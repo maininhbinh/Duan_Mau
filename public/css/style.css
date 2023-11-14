@@ -205,7 +205,8 @@ img {
   margin-bottom: 2rem;
 }
 .main .no-border .section-title_wapper {
-  padding-right: 100px;
+  margin-bottom: 20px;
+  padding-right: 110px;
 }
 .main .no-border .section-title_wapper span {
   display: flex;
@@ -220,6 +221,65 @@ img {
 }
 .main .no-border .section-title_wapper h2 {
   font-weight: 700;
+}
+.main .no-border .click-slider {
+  position: relative;
+}
+.main .no-border .click-slider .click-list {
+  width: 100%;
+}
+.main .no-border .click-slider .click-list .click-track {
+  display: grid;
+  overflow: hidden;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(14.2857142857% - 26px);
+  gap: 30px;
+}
+.main .no-border .click-slider .click-list .click-track .click-slide {
+  height: 159px;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+}
+.main .no-border .click-slider .click-list .click-track .click-slide a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.main .no-border .click-slider .click-list .click-track .click-slide a img {
+  height: 64px;
+  margin: 10px;
+}
+.main .no-border .click-slider .click-list .click-track .click-slide a h6 {
+  text-align: center;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #292930;
+  font-family: "DM Sans", sans-serif;
+}
+.main .no-border .click-slider .click-list .click-track .click-slide:hover img {
+  transform: scale(1.2);
+}
+.main .no-border .click-slider .click-next {
+  transform: translateY(-50%);
+  right: 0;
+  top: -40px;
+  position: absolute;
+}
+.main .no-border .click-slider .click-next .slider-arrow {
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  background-color: #f6f7fb;
+  color: #777;
+  border-radius: 4px;
 }
 
 @media (min-width: 1600px) {
@@ -286,6 +346,9 @@ img {
   }
   .header-banner .row .col .content h1 {
     text-align: center;
+  }
+  .main .no-border .click-slider .click-list .click-track {
+    grid-auto-columns: calc(33.3333333333% - 26px);
   }
 }
 
