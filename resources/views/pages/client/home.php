@@ -21,76 +21,52 @@
                 <div class="click-list">
                     <div class="click-track">
                         <div class="click-slide">
-                            <a href="">
-                                <img src="<?php APP_URL ?>public/assets/category/elec-1.webp" alt="">
-                                <h6>Computer</h6>
-                            </a>
+                            <img src="<?php APP_URL ?>public/assets/category/elec-1.webp" alt="" draggable="false">
+                            <h6>Computer</h6>
+                        </div>
+                        <div class="click-slide" >
+                            <img src="<?php APP_URL ?>public/assets/banner-kid.png" alt="img" draggable="false">
+                            <h6>kids</h6>
                         </div>
                         <div class="click-slide">
-                            <a href="">
-                                <img src="<?php APP_URL ?>public/assets/banner-kid.png" alt="">
-                                <h6>kids</h6>
-                            </a>
+                            <img src="<?php APP_URL ?>public/assets/category/elec-2.webp" alt="img" draggable="false">
+                            <h6>Laptop</h6>
                         </div>
                         <div class="click-slide">
-                            <a href="">
-                                <img src="<?php APP_URL ?>public/assets/category/elec-2.webp" alt="">
-                                <h6>Laptop</h6>
-                            </a>
+                            <img src="<?php APP_URL ?>public/assets/category/elec-11.webp" alt="img" draggable="false">
+                            <h6>Headphones</h6>
                         </div>
                         <div class="click-slide">
-                            <a href="">
-                                <img src="<?php APP_URL ?>public/assets/category/elec-11.webp" alt="">
-                                <h6>Headphones</h6>
-                            </a>
+                            <img src="<?php APP_URL ?>public/assets/category/elec-4.webp" alt="img" draggable="false">
+                            <h6>Camera & Photosdfsdf</h6>
                         </div>
                         <div class="click-slide">
-                            <a href="">
-                                <img src="<?php APP_URL ?>public/assets/category/elec-4.webp" alt="">
-                                <h6>Camera & Photosdfsdf</h6>
-                            </a>
+                            <img src="<?php APP_URL ?>public/assets/category/elec-5.webp" alt="img" draggable="false">
+                            <h6>kids</h6>
                         </div>
                         <div class="click-slide">
-                            <a href="">
-                                <img src="<?php APP_URL ?>public/assets/category/elec-5.webp" alt="">
-                                <h6>kids</h6>
-                            </a>
+                            <img src="<?php APP_URL ?>public/assets/category/elec-11.webp" alt="img" draggable="false">
+                            <h6>Headphones</h6>
                         </div>
                         <div class="click-slide">
-                            <a href="">
-                                <img src="<?php APP_URL ?>public/assets/category/elec-11.webp" alt="">
-                                <h6>Headphones</h6>
-                            </a>
+                            <img src="<?php APP_URL ?>public/assets/category/elec-4.webp" alt="img" draggable="false">
+                            <h6>Camera & Photosdfsdf</h6>
                         </div>
                         <div class="click-slide">
-                            <a href="">
-                                <img src="<?php APP_URL ?>public/assets/category/elec-4.webp" alt="">
-                                <h6>Camera & Photosdfsdf</h6>
-                            </a>
+                            <img src="<?php APP_URL ?>public/assets/category/elec-5.webp" alt="img" draggable="false">
+                            <h6>kids</h6>
                         </div>
                         <div class="click-slide">
-                            <a href="">
-                                <img src="<?php APP_URL ?>public/assets/category/elec-5.webp" alt="">
-                                <h6>kids</h6>
-                            </a>
+                            <img src="<?php APP_URL ?>public/assets/category/elec-11.webp" alt="img" draggable="false">
+                            <h6>Headphones</h6>
                         </div>
                         <div class="click-slide">
-                            <a href="">
-                                <img src="<?php APP_URL ?>public/assets/category/elec-11.webp" alt="">
-                                <h6>Headphones</h6>
-                            </a>
+                            <img src="<?php APP_URL ?>public/assets/category/elec-4.webp" alt="img" draggable="false">
+                            <h6>Camera & Photosdfsdf</h6>
                         </div>
                         <div class="click-slide">
-                            <a href="">
-                                <img src="<?php APP_URL ?>public/assets/category/elec-4.webp" alt="">
-                                <h6>Camera & Photosdfsdf</h6>
-                            </a>
-                        </div>
-                        <div class="click-slide">
-                            <a href="">
-                                <img src="<?php APP_URL ?>public/assets/category/elec-5.webp" alt="">
-                                <h6>kids</h6>
-                            </a>
+                            <img src="<?php APP_URL ?>public/assets/category/elec-5.webp" alt="img" draggable="false">
+                            <h6>kids</h6>
                         </div>
                     </div>
                 </div>

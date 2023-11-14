@@ -230,29 +230,29 @@ img {
 }
 .main .no-border .click-slider .click-list .click-track {
   display: grid;
-  overflow: hidden;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
   grid-auto-flow: column;
   grid-auto-columns: calc(14.2857142857% - 26px);
   gap: 30px;
+  scroll-behavior: smooth;
 }
 .main .no-border .click-slider .click-list .click-track .click-slide {
+  scroll-snap-align: start;
   height: 159px;
   border: 1px solid #f0f0f0;
   border-radius: 4px;
-}
-.main .no-border .click-slider .click-list .click-track .click-slide a {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
 }
-.main .no-border .click-slider .click-list .click-track .click-slide a img {
+.main .no-border .click-slider .click-list .click-track .click-slide img {
+  transition: 0.3s;
   height: 64px;
   margin: 10px;
 }
-.main .no-border .click-slider .click-list .click-track .click-slide a h6 {
+.main .no-border .click-slider .click-list .click-track .click-slide h6 {
   text-align: center;
   width: 90%;
   overflow: hidden;
@@ -267,11 +267,27 @@ img {
 .main .no-border .click-slider .click-list .click-track .click-slide:hover img {
   transform: scale(1.2);
 }
+.main .no-border .click-slider .click-list .click-track::-webkit-scrollbar {
+  display: none;
+}
+.main .no-border .click-slider .click-list .dragging {
+  scroll-behavior: auto;
+}
+.main .no-border .click-slider .click-list .dragging .click-slide {
+  cursor: grab;
+  user-select: none;
+}
+.main .no-border .click-slider .click-list .dragging .click-slide a {
+  user-select: none;
+}
 .main .no-border .click-slider .click-next {
   transform: translateY(-50%);
   right: 0;
   top: -40px;
   position: absolute;
+}
+.main .no-border .click-slider .click-next .click-disable {
+  opacity: 0.4;
 }
 .main .no-border .click-slider .click-next .slider-arrow {
   height: 50px;
