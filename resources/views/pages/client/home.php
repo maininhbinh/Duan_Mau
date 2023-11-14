@@ -72,5 +72,6 @@
                 </div>
             </div>
         </div>
+        
     </main>
 <?php include(APP_DIR.'/resources/views/layouts/client/footer.php') ?>
