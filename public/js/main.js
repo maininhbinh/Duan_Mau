@@ -15,15 +15,14 @@ document.querySelector(".close").onclick = () => {
 
 
 /* ========== User Form =========== */
-// var header = document.querySelector('.header');
-// var navBar = document.querySelector('.navbar')
-// window.onscroll = function() {
-//   if(window.pageYOffset > header.offsetTop){
-//     navBar.classList.add('sticky');
-//   }else{
-//     navBar.classList.remove('sticky');
-//   }
-// }
+var navBar = document.querySelector('.navbar')
+window.onscroll = function() {
+  if(window.pageYOffset > header.offsetTop){
+    navBar.classList.add('sticky');
+  }else{
+    navBar.classList.remove('sticky');
+  }
+}
 
 // ======= next category ==========
 

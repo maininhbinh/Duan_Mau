@@ -25,106 +25,102 @@
     <title>Fashion Shop</title>
 </head>
 <body>
-    <div class="header">
-      
-      <nav class="navbar">
+  <nav class="navbar">
 
-        <div class="row container d-flex">
+    <div class="row container d-flex">
 
-            <div class="logo">
+      <div class="logo">
 
-                <img src="<?php APP_URL ?>public/images/logo.svg" alt="" />
+          <img src="<?= APP_URL ?>public/images/logo.svg" alt="" />
 
-            </div>
+      </div>
 
-            <div class="nav-list d-flex">
+      <div class="nav-list d-flex">
 
-                <a href="">Home</a>
-                <a href="">Shop</a>
-                <a href="">Pages</a>
-                <a href="">About Us</a>
-                <a href="">Lookups</a>
+          <a href="<?= APP_URL?>">Home</a>
+          <a href="">Shop</a>
 
-                <div class="close">
+          <div class="close">
 
-                    <i class="bx bx-x"></i>
+              <i class="bx bx-x"></i>
 
-                </div>
-                
-                <a class="user-link">Login</a>
-
-            </div>
-
-            <div class="icons d-flex">
-
-                <div class="icon d-flex"><i class="bx bx-search"></i></div>
-
-                <div class="icon user-icon d-flex">
-
-                    <i class="bx bx-user"></i>
-
-                </div>
-
-                <div class="icon d-flex">
-
-                    <i class="bx bx-bell"></i>
-
-                    <span></span>
-
-                </div>
-
-            </div>
-
-            <!-- Hamburger -->
-
-            <div class="hamburger">
-
-                <i class="bx bx-menu-alt-right"></i>
-
-            </div>
-
-        </div>
-
-        <div class="closeMark"> 
-            
-        </div>
-
-      </nav>
-
-      <div class="header-banner">
-
-        <div class="row container ">
-
-          <div class="col">
-
-            <div class="content">
-                <span class="subtitle">
-
-                  In this season, find the best
-
-                </span>
-
-                <h1>Sports equipment collections </h1>
-
-                <div class="btn">
-
-                <button>
-
-                  Start your search
-
-                </button>
-
-              </div>
-            </div>
-            
           </div>
           
-          <div class="image">
-            <img src="<?php APP_URL ?>public/assets/banner-model.png" alt="">
+          <a class="user-link">Login</a>
+
+      </div>
+
+      <div class="icons d-flex">
+
+          <div class="icon d-flex"><i class="bx bx-search"></i></div>
+
+          <div class="icon user-icon d-flex">
+
+              <i class="bx bx-user"></i>
+
           </div>
 
-        </div>
-        
+          <div class="icon d-flex">
+
+              <i class="bx bx-bell"></i>
+
+              <span></span>
+
+          </div>
+
       </div>
+
+      <!-- Hamburger -->
+
+      <div class="hamburger">
+
+          <i class="bx bx-menu-alt-right"></i>
+
+      </div>
+
+    </div>
+
+    <div class="closeMark"> 
         
     </div>
+
+  </nav>
+  <div class="header">
+
+    <div class="header-banner">
+
+      <div class="row container ">
+
+        <div class="col">
+
+          <div class="content">
+              <span class="subtitle">
+
+                In this season, find the best
+
+              </span>
+
+              <h1>Sports equipment collections </h1>
+
+              <div class="btn">
+
+              <button>
+
+                Start your search
+
+              </button>
+
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="image">
+          <img src="<?= APP_URL ?>public/assets/banner-model.png" alt="">
+        </div>
+
+      </div>
+      
+    </div>
+      
+  </div>

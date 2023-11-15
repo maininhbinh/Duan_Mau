@@ -4,7 +4,7 @@
       <div class="row container">
         <div class="col">
           <div class="logo d-flex">
-            <img src="<?php APP_URL ?>public/images/logo.svg" alt="logo" />
+            <img src="<?= APP_URL ?>public/images/logo.svg" alt="logo" />
           </div>
           <p>
             Lorem ispum is a placeholder text <br />

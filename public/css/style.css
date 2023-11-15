@@ -100,34 +100,30 @@ img {
 }
 
 /* ========== Header =========== */
-.header {
-  margin-bottom: 4rem;
-  /* ========== Navigation =========== */
-}
-.header .navbar {
+.navbar {
   padding: 2.5rem 0;
   z-index: 1;
 }
-.header .navbar .row {
+.navbar .row {
   justify-content: space-between;
 }
-.header .navbar .row .nav-list a {
+.navbar .row .nav-list a {
   display: inline-block;
   padding: 1rem;
   font-size: 1.7rem;
   font-weight: 500;
   color: var(--black-color);
 }
-.header .navbar .row .nav-list a.user-link {
+.navbar .row .nav-list a.user-link {
   display: none;
 }
-.header .navbar .row .nav-list a:not(:last-child) {
+.navbar .row .nav-list a:not(:last-child) {
   margin-right: 0.5rem;
 }
-.header .navbar .row .nav-list a:hover {
+.navbar .row .nav-list a:hover {
   color: var(--primary-color);
 }
-.header .navbar .row .icons .icon {
+.navbar .row .icons .icon {
   font-size: 2.2rem;
   padding: 0.5rem;
   color: var(--black-color);
@@ -135,10 +131,10 @@ img {
   justify-content: center;
   position: relative;
 }
-.header .navbar .row .icons .icon:not(:last-child) {
+.navbar .row .icons .icon:not(:last-child) {
   margin-right: 3rem;
 }
-.header .navbar .row .icons .icon span {
+.navbar .row .icons .icon span {
   display: block;
   width: 1rem;
   height: 1rem;
@@ -149,12 +145,21 @@ img {
   right: 0.4rem;
   border-radius: 50%;
 }
-.header .navbar .row .icons .icon:hover {
+.navbar .row .icons .icon:hover {
   background-color: #f4f4f4;
 }
-.header .hamburger,
-.header .close {
+.navbar .hamburger,
+.navbar .close {
   display: none;
+}
+
+.header {
+  margin-bottom: 4rem;
+  /* ========== Navigation =========== */
+}
+.header .sticky {
+  top: 0;
+  position: sticky;
 }
 .header-banner .container {
   padding: 0;
@@ -302,7 +307,7 @@ img {
 }
 
 @media (min-width: 1600px) {
-  .header .navbar {
+  .navbar {
     padding: 4rem 0;
   }
 }
@@ -392,24 +397,32 @@ img {
   display: flex;
   flex-wrap: wrap;
 }
-.products .product-list .product-track .product-card {
+.products .product-list .product-track form {
+  display: block;
+  width: 25%;
+  box-sizing: border-box;
   margin-bottom: 50px;
   padding: 0 15px;
-  width: calc(24% + 4px);
+}
+.products .product-list .product-track form .product-card {
   display: flex;
   flex-direction: column;
 }
-.products .product-list .product-track .product-card .product-thumbnail {
+.products .product-list .product-track form .product-card .product-thumbnail {
   object-fit: cover;
   position: relative;
   overflow: hidden;
   background-color: rgb(248, 250, 252);
   border-radius: 1.5rem;
-  height: 373px;
   display: flex;
+  height: 100%;
   flex-direction: column;
 }
-.products .product-list .product-track .product-card .product-thumbnail .action {
+.products .product-list .product-track form .product-card .product-thumbnail a {
+  position: absolute;
+  inset: 0;
+}
+.products .product-list .product-track form .product-card .product-thumbnail .action {
   transition: 0.3s;
   cursor: pointer;
   left: 50%;
@@ -421,7 +434,7 @@ img {
   justify-content: center;
   gap: 20px;
 }
-.products .product-list .product-track .product-card .product-thumbnail .action .select-option {
+.products .product-list .product-track form .product-card .product-thumbnail .action .select-option {
   box-shadow: 2px 8px 40px rgba(0, 0, 0, 0.08);
   font-weight: 700;
   display: flex;
@@ -432,17 +445,180 @@ img {
   width: 40px;
   height: 40px;
 }
-.products .product-list .product-track .product-card .product-thumbnail .action .select-option:hover {
+.products .product-list .product-track form .product-card .product-thumbnail .action .select-option:hover {
   background-color: #000;
   color: white;
 }
-.products .product-list .product-track .product-card .product-thumbnail img {
+.products .product-list .product-track form .product-card .product-thumbnail .action .no-atributive {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.5rem;
+  box-shadow: 0 0 rgba(0, 0, 0, 0), 0 0 rgba(0, 0, 0, 0), 0 0 rgba(0, 0, 0, 0), 0 0 rgba(0, 0, 0, 0), 0 0 rgba(0, 0, 0, 0);
+  border-radius: 1.5rem;
+}
+.products .product-list .product-track form .product-card .product-thumbnail .action .no-atributive span {
+  font-size: 1.3rem;
+}
+.products .product-list .product-track form .product-card .product-thumbnail .action .no-atributive i {
+  margin-right: 10px;
+}
+.products .product-list .product-track form .product-card .product-thumbnail .action .add-cart {
+  background-color: black;
+  color: white;
+}
+.products .product-list .product-track form .product-card .product-thumbnail .action .quick-view {
+  background-color: white;
+}
+.products .product-list .product-track form .product-card .product-thumbnail img {
   width: 100%;
 }
-.products .product-list .product-track .product-card:hover .action {
+.products .product-list .product-track form .product-card .product-thumbnail:hover .action {
   bottom: 20px;
 }
+.products .product-list .product-track form .product-card .show-info .variant {
+  overflow: hidden;
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.products .product-list .product-track form .product-card .show-info .variant .border-atributive .atributive {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 30px;
+  border-radius: 1rem;
+}
+.products .product-list .product-track form .product-card .show-info .variant .border-atributive .atributive i {
+  font-size: 23px;
+}
+.products .product-list .product-track form .product-card .show-info .variant .border-atributive input[type=radio] {
+  display: none;
+}
+.products .product-list .product-track form .product-card .show-info .variant .sky-blue i {
+  color: rgb(56, 189, 248);
+}
+.products .product-list .product-track form .product-card .show-info .variant .sky-blue input[type=radio]:checked + label {
+  background-color: rgb(56, 189, 248);
+}
+.products .product-list .product-track form .product-card .show-info .variant .sky-blue input[type=radio]:checked + label i {
+  color: white;
+}
+.products .product-list .product-track form .product-card .show-info .variant .green i {
+  color: rgb(74, 222, 128);
+}
+.products .product-list .product-track form .product-card .show-info .variant .green input[type=radio]:checked + label {
+  background-color: rgb(74, 222, 128);
+}
+.products .product-list .product-track form .product-card .show-info .variant .green input[type=radio]:checked + label i {
+  color: white;
+}
+.products .product-list .product-track form .product-card .show-info .variant .orange i {
+  color: rgb(251, 146, 60);
+}
+.products .product-list .product-track form .product-card .show-info .variant .orange input[type=radio]:checked + label {
+  background-color: rgb(251, 146, 60);
+}
+.products .product-list .product-track form .product-card .show-info .variant .orange input[type=radio]:checked + label i {
+  color: white;
+}
+.products .product-list .product-track form .product-card .show-info .variant .red i {
+  color: var(--color-secondary);
+}
+.products .product-list .product-track form .product-card .show-info .variant .red input[type=radio]:checked + label {
+  background-color: var(--color-secondary);
+}
+.products .product-list .product-track form .product-card .show-info .variant .red input[type=radio]:checked + label i {
+  color: white;
+}
+.products .product-list .product-track form .product-card .show-info .variant .Yellow i {
+  color: rgb(250, 204, 21);
+}
+.products .product-list .product-track form .product-card .show-info .variant .Yellow input[type=radio]:checked + label {
+  background-color: rgb(250, 204, 21);
+}
+.products .product-list .product-track form .product-card .show-info .variant .Yellow input[type=radio]:checked + label i {
+  color: white;
+}
+.products .product-list .product-track form .product-card .show-info .variant .violet i {
+  color: rgb(139, 92, 246);
+}
+.products .product-list .product-track form .product-card .show-info .variant .violet input[type=radio]:checked + label {
+  background-color: rgb(139, 92, 246);
+}
+.products .product-list .product-track form .product-card .show-info .variant .violet input[type=radio]:checked + label i {
+  color: white;
+}
+.products .product-list .product-track form .product-card .show-info .variant .pink i {
+  color: #FFB6C1;
+}
+.products .product-list .product-track form .product-card .show-info .variant .pink input[type=radio]:checked + label {
+  background-color: #FFB6C1;
+}
+.products .product-list .product-track form .product-card .show-info .variant .pink input[type=radio]:checked + label i {
+  color: white;
+}
+.products .product-list .product-track form .product-card .show-info .product-content {
+  margin-bottom: 15px;
+}
+.products .product-list .product-track form .product-card .show-info .product-content h2 {
+  width: 60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  font-size: 1.7rem;
+}
+.products .product-list .product-track form .product-card .show-info .product-content p {
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgb(100, 116, 139);
+  font-size: 1.5rem;
+}
+.products .product-list .product-track form .product-card .show-info .product-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.products .product-list .product-track form .product-card .show-info .product-status .price {
+  padding: 0.4rem 1.3rem;
+  color: rgb(34, 197, 94);
+  border-radius: 1rem;
+  border: 2px solid rgb(34, 197, 94);
+  font-weight: 500;
+}
+.products .product-list .product-track form .product-card .show-info .product-status .rating {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+.products .product-list .product-track form .product-card .show-info .product-status .rating i {
+  margin-right: 5px;
+  color: rgb(250, 204, 21);
+}
+.products .product-list .product-track form .product-card .show-info .product-status .rating span {
+  color: rgb(100, 116, 139);
+}
 
+@media (max-width: 1600px) {
+  .products .product-list .product-track form {
+    width: 50%;
+  }
+}
+@media (max-width: 690px) {
+  .products .product-list .product-track form {
+    width: 100%;
+  }
+}
 .footer {
   background-color: rgba(252, 203, 144, 0.15);
   padding: 10rem 3rem 10rem;

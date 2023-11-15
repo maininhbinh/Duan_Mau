@@ -84,19 +84,25 @@ class RouteCollector
                     continue;
                 }
             } else {
+
                 $routeParam = array_values(array_filter(explode('/', $route)));
                 $requestParams = array_values(array_filter(explode('/', $this->url)));
                 $pattern = preg_replace('/{[^}]+}/', '[^/]+', strtolower(trim($route, '/')));
                 $match = preg_match(sprintf('~^%s$~', $pattern), strtolower(trim($this->url, '/')));
 
                 if (count($routeParam) == count($requestParams) && $match) {
+
                     foreach ($routeParam as $index => $item) {
+
                         if (preg_match('/^{\w+}$/', $item)) {
+
                             $this->params[] = $requestParams[$index];
                             $checkRoute = true;
                         }
                     }
+
                 } else {
+
                     continue;
                 }
             }
