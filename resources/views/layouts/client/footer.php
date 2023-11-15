@@ -1,6 +1,6 @@
     <!-- ====== Footer ====== -->
 
-    <footer class="footer">
+    <footer class="footer ">
       <div class="row container">
         <div class="col">
           <div class="logo d-flex">

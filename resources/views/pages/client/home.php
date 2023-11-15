@@ -1,6 +1,6 @@
 <?php include(APP_DIR.'/resources/views/layouts/client/nav.php') ?>
     <main class="main container">
-        <div class="no-border">
+        <div class="no-border category">
             <div class="section-title_wapper">
                 <span>
                     <i class="fa-solid fa-tag"></i> Category
@@ -72,6 +72,114 @@
                 </div>
             </div>
         </div>
-        
+        <div class="no-border products">
+            <div class="section-title_wapper">
+                <span>
+                    <i class="fa-solid fa-cart-shopping"></i> Products
+                </span>
+                <h2 class="title">
+                    Browser by Products
+                </h2>
+            </div>
+            <div class="product-list">
+                <div class="product-track">
+                    <div class="product-card">
+                        <div class="product-thumbnail">
+                            <img src="<?php APP_URL?>public/images/product-1.png" alt="">
+                            <div class="action">
+                                <div class="select-option">
+                                    S
+                                </div>
+                                <div class="select-option">
+                                    M
+                                </div>
+                                <div class="select-option">
+                                    XL
+                                </div>
+                                <div class="select-option">
+                                    XXL
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-thumbnail">
+                            <img src="<?php APP_URL?>public/assets/banner-kid.png" alt="">
+                            <div class="action">
+                                <div class="select-option">
+                                    S
+                                </div>
+                                <div class="select-option">
+                                    M
+                                </div>
+                                <div class="select-option">
+                                    XL
+                                </div>
+                                <div class="select-option">
+                                    XXL
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-thumbnail">
+                            <img src="<?php APP_URL?>public/images/product-1.png" alt="">
+                            <div class="action">
+                                <div class="select-option">
+                                    S
+                                </div>
+                                <div class="select-option">
+                                    M
+                                </div>
+                                <div class="select-option">
+                                    XL
+                                </div>
+                                <div class="select-option">
+                                    XXL
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-thumbnail">
+                            <img src="<?php APP_URL?>public/assets/banner-kid.png" alt="">
+                            <div class="action">
+                                <div class="select-option">
+                                    S
+                                </div>
+                                <div class="select-option">
+                                    M
+                                </div>
+                                <div class="select-option">
+                                    XL
+                                </div>
+                                <div class="select-option">
+                                    XXL
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-thumbnail">
+                            <img src="<?php APP_URL?>public/images/product-1.png" alt="">
+                            <div class="action">
+                                <div class="select-option">
+                                    S
+                                </div>
+                                <div class="select-option">
+                                    M
+                                </div>
+                                <div class="select-option">
+                                    XL
+                                </div>
+                                <div class="select-option">
+                                    XXL
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 <?php include(APP_DIR.'/resources/views/layouts/client/footer.php') ?>

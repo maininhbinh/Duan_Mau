@@ -11,6 +11,7 @@
   --grey-color: #f0f0f0;
   --white-color: #fff;
   --lightpink: #ffcce0;
+  --light-primary:#8c71db;
   --blue: #1a1aff;
   --custom: #1a1aff;
   --color: #4d4d4d;
@@ -240,11 +241,10 @@ img {
 }
 
 .main{
-  height: 1000px;
   margin-bottom: 2rem;
 
-  .no-border{
-
+  .category{
+    margin-bottom: 60px;
     .section-title_wapper{
       margin-bottom: 20px;
       padding-right: 110px;
@@ -458,6 +458,96 @@ img {
     }
   }
 }
+
+
+.products{
+
+  .section-title_wapper{
+    margin-bottom: 20px;
+    padding-right: 110px;
+    span{
+      display: flex;
+      align-items: center;  
+      color: var(--light-primary);
+      margin-bottom: 10px;
+      font-weight: 700;
+      font-size: 14px;
+
+      i{
+        margin-right: 5px;
+      }
+    }
+    h2{
+      font-weight: 700;
+    }
+  }
+
+  .product-list{
+
+    .product-track{
+      display: flex;
+      flex-wrap: wrap;
+
+
+      .product-card{
+        margin-bottom: 50px;
+        padding: 0 15px;
+        width: calc(24% + 4px);
+        display: flex;
+        flex-direction: column;
+
+        .product-thumbnail{
+          object-fit: cover;
+          position: relative;
+          overflow: hidden;
+          background-color: rgb(248 250 252/1);
+          border-radius: 1.5rem;
+          height: 373px;
+          display: flex;
+          flex-direction: column;
+          .action{
+            transition: .3s;
+            cursor: pointer;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -50px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+
+            .select-option{
+              box-shadow: 2px 8px 40px rgba(0,0,0,.08);
+              font-weight: 700;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: white;
+              border-radius: 1rem;
+              width: 40px;
+              height: 40px;
+            }
+            .select-option:hover{
+              background-color: #000;
+              color: white;
+            }
+          }
+
+          img{
+            width: 100%;
+          }
+        }
+
+      }
+
+      .product-card:hover .action{
+        bottom: 20px;
+      }
+    }
+  }
+}
+
 
 .footer {
   background-color: rgba(#fccb90, 15%);
