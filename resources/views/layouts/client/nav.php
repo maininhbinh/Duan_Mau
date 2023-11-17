@@ -52,19 +52,67 @@
 
       <div class="icons d-flex">
 
-          <div class="icon d-flex"><i class="bx bx-search"></i></div>
+          <div class="icon  d-flex">
 
-          <div class="icon user-icon d-flex">
-
+            <button class="click-icon click-user">
               <i class="bx bx-user"></i>
+            </button>
+
+            <div class="profile">
+
+              <div class="border-profile">
+                <div class="profile-content">
+                  <div class="info">
+                    <div class="avatar">
+                      <img src="<?= APP_URL ?>public/images/avatar/image-8.webp" alt="">
+                    </div>
+                    <div class="info-content">
+                      <h4>Eden Smithfffffffffffffffffffffffffff</h4>
+                      <p>Los Agnelesddddddddddddddddddddddddd</p>
+                    </div>
+                  </div>
+
+                  <div class="border"></div>
+
+                  <a class="my account">
+                    <i class="fa-solid fa-user"></i>
+                    <p>My account</p>
+                  </a>
+
+                  <a class="my order">
+                  <i class="fa-solid fa-bag-shopping"></i>
+                  <p>My order</p>
+                  </a>
+
+                  <div class="border"></div>
+
+                  <a href="" class="logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <p>Logout</p>
+                  </a>
+
+                </div>
+              </div>
+              
+            </div>
 
           </div>
 
           <div class="icon d-flex">
 
+            <button class="click-icon">
               <i class="bx bx-bell"></i>
+            </button>
 
-              <span></span>
+            <span></span>
+
+          </div>
+
+          <div class="icon user-icon d-flex">
+
+            <button class="click-icon">
+              <i class="fa-solid fa-basket-shopping"></i>
+            </button>
 
           </div>
 
@@ -85,42 +133,4 @@
     </div>
 
   </nav>
-  <div class="header">
-
-    <div class="header-banner">
-
-      <div class="row container ">
-
-        <div class="col">
-
-          <div class="content">
-              <span class="subtitle">
-
-                In this season, find the best
-
-              </span>
-
-              <h1>Sports equipment collections </h1>
-
-              <div class="btn">
-
-              <button>
-
-                Start your search
-
-              </button>
-
-            </div>
-          </div>
-          
-        </div>
-        
-        <div class="image">
-          <img src="<?= APP_URL ?>public/assets/banner-model.png" alt="">
-        </div>
-
-      </div>
-      
-    </div>
-      
-  </div>
+  
