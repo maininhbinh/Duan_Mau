@@ -1,4 +1,4 @@
-<?php include(APP_DIR . '/resources/views/layouts/client/nav.php') ?>
+<?php include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
 <div class="header">
 
     <div class="header-banner">

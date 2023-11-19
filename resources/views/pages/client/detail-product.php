@@ -1,4 +1,4 @@
-<?php include(APP_DIR . '/resources/views/layouts/client/nav.php') ?>
+<?php include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
 <div class="container detail-product">
     <div class="main-detail">
         <div class="thumbnail-product">
@@ -108,7 +108,979 @@
                                 </svg>
                             </button>
                         </div>
+                        <button type="submit" class="add-cart">
+                            <i class="fa-solid fa-cart-arrow-down"></i>
+                            Add to cart
+                        </button>
                     </div>
+                </div>
+            </div>
+            <div class="border"></div>
+
+            <div class="description">
+                <h3>
+                    Description:
+                </h3>
+                <p>
+                    Fashion is a form of self-expression and autonomy at a particular period and place and in a specific context, of clothing, footwear, lifestyle, accessories, makeup, hairstyle, and body posture.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="same-product">
+        <div class="title">
+            <h2>
+                Customers also purchased
+            </h2>
+        </div>
+        <div class="no-border products-slider">
+            <div class="click-next">
+                <button class="slider-arrow prve-arrow">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button class="slider-arrow next-arrow">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+            <div class="product-list">
+                <div class="product-track">
+
+                    <form action="" method="post">
+                        <div class="product-card">
+                            <div class="product-thumbnail">
+                                <a href="<?= APP_URL ?>product/detail"></a>
+                                <img src="<?= APP_URL ?>public/images/product-1.png" alt="">
+                                <div class="action">
+                                    <div class="select-option">
+                                        S
+                                    </div>
+                                    <div class="select-option">
+                                        M
+                                    </div>
+                                    <div class="select-option">
+                                        XL
+                                    </div>
+                                    <div class="select-option">
+                                        XXL
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-info">
+                                <div class="variant">
+
+                                    <div class="border-atributive sky-blue">
+                                        <input type="radio" name="1" id="sky-blue" checked> <!-- chèn thêm id của product ở đây -->
+                                        <label for="sky-blue" class="atributive"> <!-- thẻ label thì trỏ tới id đó -->
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive green">
+                                        <input type="radio" name="1" id="green">
+                                        <label for="green" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive orange">
+                                        <input type="radio" name="1" id="orange">
+                                        <label for="orange" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive red">
+                                        <input type="radio" name="1" id="red">
+                                        <label for="red" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive Yellow">
+                                        <input type="radio" name="1" id="Yellow">
+                                        <label for="Yellow" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive violet">
+                                        <input type="radio" name="1" id="violet">
+                                        <label for="violet" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive pink">
+                                        <input type="radio" name="1" id="pink">
+                                        <label for="pink" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="product-content">
+                                    <h2>
+                                        Leather Glove
+                                    </h2>
+                                    <p>Perfect mint green</p>
+                                </div>
+
+                                <div class="product-status">
+                                    <div class="price">
+                                        $42
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>4.9 (98 review)</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <form action="" method="post">
+                        <div class="product-card">
+                            <div class="product-thumbnail">
+                                <a href="<?= APP_URL ?>product/detail"></a>
+                                <img src="<?= APP_URL ?>public/images/product-1.png" alt="">
+                                <div class="action">
+                                    <div class="add-cart no-atributive">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                        <span>Add to cart</span>
+                                    </div>
+                                    <div class="quick-view no-atributive">
+                                        <i class="fa-solid fa-expand"></i>
+                                        <span>Quick view</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-info">
+                                <div class="variant">
+
+                                    <div class="border-atributive sky-blue">
+                                        <input type="radio" name="1" id="sky-blue" checked> <!-- chèn thêm id của product ở đây -->
+                                        <label for="sky-blue" class="atributive"> <!-- thẻ label thì trỏ tới id đó -->
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive green">
+                                        <input type="radio" name="1" id="green">
+                                        <label for="green" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive orange">
+                                        <input type="radio" name="1" id="orange">
+                                        <label for="orange" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive red">
+                                        <input type="radio" name="1" id="red">
+                                        <label for="red" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive Yellow">
+                                        <input type="radio" name="1" id="Yellow">
+                                        <label for="Yellow" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive violet">
+                                        <input type="radio" name="1" id="violet">
+                                        <label for="violet" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive pink">
+                                        <input type="radio" name="1" id="pink">
+                                        <label for="pink" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="product-content">
+                                    <h2>
+                                        Leather Gloves
+                                    </h2>
+                                    <p>Perfect mint green</p>
+                                </div>
+
+                                <div class="product-status">
+                                    <div class="price">
+                                        $42
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>4.9 (98 review)</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <form action="" method="post">
+                        <div class="product-card">
+                            <div class="product-thumbnail">
+                                <a href="<?= APP_URL ?>product/detail"></a>
+                                <img src="<?= APP_URL ?>public/images/product-1.png" alt="">
+                                <div class="action">
+                                    <div class="select-option">
+                                        S
+                                    </div>
+                                    <div class="select-option">
+                                        M
+                                    </div>
+                                    <div class="select-option">
+                                        XL
+                                    </div>
+                                    <div class="select-option">
+                                        XXL
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-info">
+                                <div class="variant">
+
+                                    <div class="border-atributive sky-blue">
+                                        <input type="radio" name="1" id="sky-blue" checked> <!-- chèn thêm id của product ở đây -->
+                                        <label for="sky-blue" class="atributive"> <!-- thẻ label thì trỏ tới id đó -->
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive green">
+                                        <input type="radio" name="1" id="green">
+                                        <label for="green" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive orange">
+                                        <input type="radio" name="1" id="orange">
+                                        <label for="orange" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive red">
+                                        <input type="radio" name="1" id="red">
+                                        <label for="red" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive Yellow">
+                                        <input type="radio" name="1" id="Yellow">
+                                        <label for="Yellow" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive violet">
+                                        <input type="radio" name="1" id="violet">
+                                        <label for="violet" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive pink">
+                                        <input type="radio" name="1" id="pink">
+                                        <label for="pink" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="product-content">
+                                    <h2>
+                                        Leather Gloves
+                                    </h2>
+                                    <p>Perfect mint green</p>
+                                </div>
+
+                                <div class="product-status">
+                                    <div class="price">
+                                        $42
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>4.9 (98 review)</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <form action="" method="post">
+                        <div class="product-card">
+                            <div class="product-thumbnail">
+                                <a href="<?= APP_URL ?>product/detail"></a>
+                                <img src="<?= APP_URL ?>public/images/product-1.png" alt="">
+                                <div class="action">
+                                    <div class="select-option">
+                                        S
+                                    </div>
+                                    <div class="select-option">
+                                        M
+                                    </div>
+                                    <div class="select-option">
+                                        XL
+                                    </div>
+                                    <div class="select-option">
+                                        XXL
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-info">
+                                <div class="variant">
+
+                                    <div class="border-atributive sky-blue">
+                                        <input type="radio" name="1" id="sky-blue" checked> <!-- chèn thêm id của product ở đây -->
+                                        <label for="sky-blue" class="atributive"> <!-- thẻ label thì trỏ tới id đó -->
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive green">
+                                        <input type="radio" name="1" id="green">
+                                        <label for="green" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive orange">
+                                        <input type="radio" name="1" id="orange">
+                                        <label for="orange" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive red">
+                                        <input type="radio" name="1" id="red">
+                                        <label for="red" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive Yellow">
+                                        <input type="radio" name="1" id="Yellow">
+                                        <label for="Yellow" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive violet">
+                                        <input type="radio" name="1" id="violet">
+                                        <label for="violet" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive pink">
+                                        <input type="radio" name="1" id="pink">
+                                        <label for="pink" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="product-content">
+                                    <h2>
+                                        Leather Gloves
+                                    </h2>
+                                    <p>Perfect mint green</p>
+                                </div>
+
+                                <div class="product-status">
+                                    <div class="price">
+                                        $42
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>4.9 (98 review)</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <form action="" method="post">
+                        <div class="product-card">
+                            <div class="product-thumbnail">
+                                <a href="<?= APP_URL ?>product/detail"></a>
+                                <img src="<?= APP_URL ?>public/images/product-1.png" alt="">
+                                <div class="action">
+                                    <div class="select-option">
+                                        S
+                                    </div>
+                                    <div class="select-option">
+                                        M
+                                    </div>
+                                    <div class="select-option">
+                                        XL
+                                    </div>
+                                    <div class="select-option">
+                                        XXL
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-info">
+                                <div class="variant">
+
+                                    <div class="border-atributive sky-blue">
+                                        <input type="radio" name="1" id="sky-blue" checked> <!-- chèn thêm id của product ở đây -->
+                                        <label for="sky-blue" class="atributive"> <!-- thẻ label thì trỏ tới id đó -->
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive green">
+                                        <input type="radio" name="1" id="green">
+                                        <label for="green" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive orange">
+                                        <input type="radio" name="1" id="orange">
+                                        <label for="orange" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive red">
+                                        <input type="radio" name="1" id="red">
+                                        <label for="red" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive Yellow">
+                                        <input type="radio" name="1" id="Yellow">
+                                        <label for="Yellow" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive violet">
+                                        <input type="radio" name="1" id="violet">
+                                        <label for="violet" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive pink">
+                                        <input type="radio" name="1" id="pink">
+                                        <label for="pink" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="product-content">
+                                    <h2>
+                                        Leather Gloves
+                                    </h2>
+                                    <p>Perfect mint green</p>
+                                </div>
+
+                                <div class="product-status">
+                                    <div class="price">
+                                        $42
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>4.9 (98 review)</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <form action="" method="post">
+                        <div class="product-card">
+                            <div class="product-thumbnail">
+                                <a href="<?= APP_URL ?>product/detail"></a>
+                                <img src="<?= APP_URL ?>public/images/product-1.png" alt="">
+                                <div class="action">
+                                    <div class="select-option">
+                                        S
+                                    </div>
+                                    <div class="select-option">
+                                        M
+                                    </div>
+                                    <div class="select-option">
+                                        XL
+                                    </div>
+                                    <div class="select-option">
+                                        XXL
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-info">
+                                <div class="variant">
+
+                                    <div class="border-atributive sky-blue">
+                                        <input type="radio" name="1" id="sky-blue" checked> <!-- chèn thêm id của product ở đây -->
+                                        <label for="sky-blue" class="atributive"> <!-- thẻ label thì trỏ tới id đó -->
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive green">
+                                        <input type="radio" name="1" id="green">
+                                        <label for="green" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive orange">
+                                        <input type="radio" name="1" id="orange">
+                                        <label for="orange" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive red">
+                                        <input type="radio" name="1" id="red">
+                                        <label for="red" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive Yellow">
+                                        <input type="radio" name="1" id="Yellow">
+                                        <label for="Yellow" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive violet">
+                                        <input type="radio" name="1" id="violet">
+                                        <label for="violet" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive pink">
+                                        <input type="radio" name="1" id="pink">
+                                        <label for="pink" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="product-content">
+                                    <h2>
+                                        Leather Gloves
+                                    </h2>
+                                    <p>Perfect mint green</p>
+                                </div>
+
+                                <div class="product-status">
+                                    <div class="price">
+                                        $42
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>4.9 (98 review)</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <form action="" method="post">
+                        <div class="product-card">
+                            <div class="product-thumbnail">
+                                <a href="<?= APP_URL ?>product/detail"></a>
+                                <img src="<?= APP_URL ?>public/images/product-1.png" alt="">
+                                <div class="action">
+                                    <div class="select-option">
+                                        S
+                                    </div>
+                                    <div class="select-option">
+                                        M
+                                    </div>
+                                    <div class="select-option">
+                                        XL
+                                    </div>
+                                    <div class="select-option">
+                                        XXL
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-info">
+                                <div class="variant">
+
+                                    <div class="border-atributive sky-blue">
+                                        <input type="radio" name="1" id="sky-blue" checked> <!-- chèn thêm id của product ở đây -->
+                                        <label for="sky-blue" class="atributive"> <!-- thẻ label thì trỏ tới id đó -->
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive green">
+                                        <input type="radio" name="1" id="green">
+                                        <label for="green" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive orange">
+                                        <input type="radio" name="1" id="orange">
+                                        <label for="orange" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive red">
+                                        <input type="radio" name="1" id="red">
+                                        <label for="red" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive Yellow">
+                                        <input type="radio" name="1" id="Yellow">
+                                        <label for="Yellow" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive violet">
+                                        <input type="radio" name="1" id="violet">
+                                        <label for="violet" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive pink">
+                                        <input type="radio" name="1" id="pink">
+                                        <label for="pink" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="product-content">
+                                    <h2>
+                                        Leather Gloves
+                                    </h2>
+                                    <p>Perfect mint green</p>
+                                </div>
+
+                                <div class="product-status">
+                                    <div class="price">
+                                        $42
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>4.9 (98 review)</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <form action="" method="post">
+                        <div class="product-card">
+                            <div class="product-thumbnail">
+                                <a href="<?= APP_URL ?>product/detail"></a>
+                                <img src="<?= APP_URL ?>public/images/product-1.png" alt="">
+                                <div class="action">
+                                    <div class="select-option">
+                                        S
+                                    </div>
+                                    <div class="select-option">
+                                        M
+                                    </div>
+                                    <div class="select-option">
+                                        XL
+                                    </div>
+                                    <div class="select-option">
+                                        XXL
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-info">
+                                <div class="variant">
+
+                                    <div class="border-atributive sky-blue">
+                                        <input type="radio" name="1" id="sky-blue" checked> <!-- chèn thêm id của product ở đây -->
+                                        <label for="sky-blue" class="atributive"> <!-- thẻ label thì trỏ tới id đó -->
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive green">
+                                        <input type="radio" name="1" id="green">
+                                        <label for="green" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive orange">
+                                        <input type="radio" name="1" id="orange">
+                                        <label for="orange" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive red">
+                                        <input type="radio" name="1" id="red">
+                                        <label for="red" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive Yellow">
+                                        <input type="radio" name="1" id="Yellow">
+                                        <label for="Yellow" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive violet">
+                                        <input type="radio" name="1" id="violet">
+                                        <label for="violet" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive pink">
+                                        <input type="radio" name="1" id="pink">
+                                        <label for="pink" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="product-content">
+                                    <h2>
+                                        Leather Gloves
+                                    </h2>
+                                    <p>Perfect mint green</p>
+                                </div>
+
+                                <div class="product-status">
+                                    <div class="price">
+                                        $42
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>4.9 (98 review)</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <form action="" method="post">
+                        <div class="product-card">
+                            <div class="product-thumbnail">
+                                <a href="<?= APP_URL ?>product/detail"></a>
+                                <img src="<?= APP_URL ?>public/images/product-1.png" alt="">
+                                <div class="action">
+                                    <div class="select-option">
+                                        S
+                                    </div>
+                                    <div class="select-option">
+                                        M
+                                    </div>
+                                    <div class="select-option">
+                                        XL
+                                    </div>
+                                    <div class="select-option">
+                                        XXL
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-info">
+                                <div class="variant">
+
+                                    <div class="border-atributive sky-blue">
+                                        <input type="radio" name="1" id="sky-blue" checked> <!-- chèn thêm id của product ở đây -->
+                                        <label for="sky-blue" class="atributive"> <!-- thẻ label thì trỏ tới id đó -->
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive green">
+                                        <input type="radio" name="1" id="green">
+                                        <label for="green" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive orange">
+                                        <input type="radio" name="1" id="orange">
+                                        <label for="orange" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive red">
+                                        <input type="radio" name="1" id="red">
+                                        <label for="red" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive Yellow">
+                                        <input type="radio" name="1" id="Yellow">
+                                        <label for="Yellow" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive violet">
+                                        <input type="radio" name="1" id="violet">
+                                        <label for="violet" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive pink">
+                                        <input type="radio" name="1" id="pink">
+                                        <label for="pink" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="product-content">
+                                    <h2>
+                                        Leather Gloves
+                                    </h2>
+                                    <p>Perfect mint green</p>
+                                </div>
+
+                                <div class="product-status">
+                                    <div class="price">
+                                        $42
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>4.9 (98 review)</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <form action="" method="post">
+                        <div class="product-card">
+                            <div class="product-thumbnail">
+                                <a href="<?= APP_URL ?>product/detail"></a>
+                                <img src="<?= APP_URL ?>public/images/product-1.png" alt="">
+                                <div class="action">
+                                    <div class="select-option">
+                                        S
+                                    </div>
+                                    <div class="select-option">
+                                        M
+                                    </div>
+                                    <div class="select-option">
+                                        XL
+                                    </div>
+                                    <div class="select-option">
+                                        XXL
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-info">
+                                <div class="variant">
+
+                                    <div class="border-atributive sky-blue">
+                                        <input type="radio" name="1" id="sky-blue" checked> <!-- chèn thêm id của product ở đây -->
+                                        <label for="sky-blue" class="atributive"> <!-- thẻ label thì trỏ tới id đó -->
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive green">
+                                        <input type="radio" name="1" id="green">
+                                        <label for="green" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive orange">
+                                        <input type="radio" name="1" id="orange">
+                                        <label for="orange" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive red">
+                                        <input type="radio" name="1" id="red">
+                                        <label for="red" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive Yellow">
+                                        <input type="radio" name="1" id="Yellow">
+                                        <label for="Yellow" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive violet">
+                                        <input type="radio" name="1" id="violet">
+                                        <label for="violet" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="border-atributive pink">
+                                        <input type="radio" name="1" id="pink">
+                                        <label for="pink" class="atributive">
+                                            <i class="fa-solid fa-palette"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="product-content">
+                                    <h2>
+                                        Leather Gloves
+                                    </h2>
+                                    <p>Perfect mint green</p>
+                                </div>
+
+                                <div class="product-status">
+                                    <div class="price">
+                                        $42
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>4.9 (98 review)</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>
