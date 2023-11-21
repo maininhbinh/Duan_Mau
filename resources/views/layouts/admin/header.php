@@ -11,14 +11,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 
-    <title>Lineone - CRM Analytics Dashboard</title>
-    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <title>admin</title>
+    <link rel="icon" type="image/png" href="<?= APP_URL ?>/public/images/admin/favicon.png" />
 
     <!-- CSS Assets -->
-    <link rel="stylesheet" href="<?= APP_URL?>public/css/admin.css" />
+    <link rel="stylesheet" href="<?= APP_URL ?>public/css/app.css" />
 
     <!-- Javascript Assets -->
-    <script src="<?= APP_URL?>public/js/admin.js" defer></script>
+    <script src="<?= APP_URL ?>public/js/admin.js" defer></script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
