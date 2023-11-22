@@ -2,8 +2,11 @@
 
 namespace App\Controllers;
 
+use Modules\core;
+
 class HomeController
 {
+    use core;
 
     public function __construct()
     {
@@ -12,11 +15,11 @@ class HomeController
     public function index()
     {
 
-        return include(APP_DIR . '/resources/views/pages/client/home.php');
+        return $this->view('pages.client.home');
     }
 
     public function detailProduct()
     {
-        return include(APP_DIR . '/resources/views/pages/client/detail-product.php');
+        return $this->view('pages.client.detail-product');
     }
 }

@@ -15,7 +15,7 @@ class model
     public function __construct()
     {
         try {
-            $this->pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8", DB_NAME, DB_PASSWORD);
+            $this->pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_DATABASE . ";charset=" .  DB_CHARSET, DB_NAME, DB_PASSWORD);
         } catch (Exception $e) {
             echo "kết nối bị gián đoạn " . $e->getMessage();
         }

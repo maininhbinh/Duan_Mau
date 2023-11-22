@@ -11,7 +11,15 @@ $router->get('product/detail', [\App\Controllers\HomeController::class, 'detailP
 
 // $router->get('checkout', [\App\Controllers\HomeController::class, 'checkout']);
 
-$router->get('admin/dashboard', [\App\Controllers\Admin\admin::class, 'dashboard']);
+$router->get('admin/dashboard', [\App\Controllers\Admin\AdminController::class, 'dashboard'])->middleware('auth');
+
+$router->get('signup', [\App\Controllers\Client\ClientController::class, 'signup'])->middleware('signup');
+$router->get('signin', [\App\Controllers\Client\ClientController::class, 'signin'])->middleware('signin');
+$router->post('signup', [\App\Controllers\Client\ClientController::class, 'setSignup']);
+$router->post('signin', [\App\Controllers\Client\ClientController::class, 'setSignin']);
+$router->get('logout', [\App\Controllers\Client\ClientController::class, 'logOut']);
+
+$router->any('test', [\App\Controllers\Client\ClientController::class, 'dfsd']);
 
 $router->get('*', function () {
     require_once 'resources/views/pages/404.php';

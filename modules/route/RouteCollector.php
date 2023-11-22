@@ -2,6 +2,8 @@
 
 namespace Modules\route;
 
+use Middleware\auth;
+use Middleware\middleware;
 
 class RouteCollector
 {
@@ -25,25 +27,26 @@ class RouteCollector
     //phương thức get
     public function get($route, $handler)
     {
-        $this->addRoute('GET', $route, $handler);
+        return $this->addRoute('GET', $route, $handler);
     }
 
     //phương thức post
     public function post($route, $handler)
     {
-        $this->addRoute('POST', $route, $handler);
+        return $this->addRoute('POST', $route, $handler);
     }
 
     //phương thức sử dụng bất kì
     public function any($route, $handler)
     {
-        $this->addRoute('GET|POST', $route, $handler);
+        return $this->addRoute('GET|POST', $route, $handler);
     }
 
     //add lại các phương thức sẽ sử dụng trong dự án
     public function addRoute($httpMethod, $route, $handler)
     {
-        $this->routes[] = [$httpMethod, $route, $handler];
+        $this->routes[] = [$httpMethod, $route, $handler, $midleware = null];
+        return $this;
     }
 
     //add lại url và method đang được sử dụng
@@ -67,7 +70,7 @@ class RouteCollector
         foreach ($routes as $route) {
 
             //destructuring giá trị trong mảng
-            list($httpMethod, $route, $handler) = $route;
+            list($httpMethod, $route, $handler, $midleware) = $route;
 
             //nếu không trùng giá trị method thì sẽ continue
             if (strpos($this->httpMethod, $httpMethod) === false) {
@@ -100,7 +103,6 @@ class RouteCollector
                             $checkRoute = true;
                         }
                     }
-
                 } else {
 
                     continue;
@@ -109,6 +111,17 @@ class RouteCollector
 
 
             if ($checkRoute == true) {
+
+                if ($midleware) {
+                    $checkMidleware = true;
+                    if (!isset(middleware::MAP[$midleware])) {
+                        header('location:' . APP_URL);
+                    }
+
+                    list($class, $method)  = middleware::MAP[$midleware];
+                    (new $class)->$method();
+                }
+
                 if (is_callable($handler)) {
                     call_user_func_array($handler, $this->params);
                     return;
@@ -130,13 +143,18 @@ class RouteCollector
         }
 
         if (class_exists($handler[0])) {
-
             $object = new $handler[0];
 
             if (method_exists($object, $handler[1])) {
                 call_user_func_array([$object, $handler[1]], $this->params);
             }
         }
+    }
+
+    public function middleware($key)
+    {
+        $this->routes[array_key_last($this->routes)][3] = $key;
+        return $this;
     }
 
     public function run()
