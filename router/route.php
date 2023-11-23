@@ -19,7 +19,12 @@ $router->post('signup', [\App\Controllers\Client\ClientController::class, 'setSi
 $router->post('signin', [\App\Controllers\Client\ClientController::class, 'setSignin']);
 $router->get('logout', [\App\Controllers\Client\ClientController::class, 'logOut']);
 
-$router->any('test', [\App\Controllers\Client\ClientController::class, 'dfsd']);
+$router->get('admin/category', [\App\Controllers\Admin\AdminController::class, 'category'])->middleware('auth');
+$router->get('admin/category/add', [\App\Controllers\Admin\AdminController::class, 'categoryCreate'])->middleware('auth');
+$router->get('admin/category/{id}/delete', [\App\Controllers\Admin\AdminController::class, 'categoryInActive'])->middleware('auth');
+$router->get('admin/category/{id}/edit', [\App\Controllers\Admin\AdminController::class, 'categoryEdit'])->middleware('auth');
+$router->post('admin/category/add', [\App\Controllers\Admin\AdminController::class, 'categoryStore'])->middleware('auth');
+$router->post('admin/category/{id}/update', [\App\Controllers\Admin\AdminController::class, 'categoryUpdate'])->middleware('auth');
 
 $router->get('*', function () {
     require_once 'resources/views/pages/404.php';

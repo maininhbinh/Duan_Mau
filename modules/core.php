@@ -4,7 +4,7 @@ namespace Modules;
 
 trait core
 {
-    public function view($view, $data = null)
+    public function view($view, $data = [])
     {
         $view = str_replace('.', '/', $view);
 

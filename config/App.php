@@ -2,6 +2,7 @@
 class App
 {
     public static $config;
+    public static $path;
 
     static function setConfig($config)
     {

@@ -481,6 +481,23 @@ body.is-monochrome:before {
 
 .is-sidebar-open .main-sidebar a {
   width: 100%;
+  padding: 10px;
+  justify-content: start;
+}
+
+.is-sidebar-open .main-sidebar .right {
+  align-items: start;
+  justify-content: start;
+}
+
+.is-sidebar-open .main-sidebar .right .setting .icon-setting {
+  width: 100%;
+  justify-content: start;
+}
+
+.is-sidebar-open .main-sidebar .right .setting .icon-setting h3 {
+  margin-left: 10px;
+  display: inline;
 }
 
 .is-sidebar-open .main-sidebar a h3 {
@@ -636,7 +653,9 @@ nav.header .header-container {
 }
 @media (min-width: 1280px) {
   .is-sidebar-open .main-content {
-    margin-left: calc(var(--main-sidebar-width) + var(--sidebar-panel-width));
+    margin-left: calc(
+      var(--main-sidebar-width) + var(--sidebar-panel-width) - 80px
+    );
   }
 }
 .navigation\:sideblock {

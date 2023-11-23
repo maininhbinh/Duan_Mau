@@ -5,7 +5,7 @@ namespace App\Models;
 use Exception;
 use PDO;
 
-class model
+class Model
 {
     protected $pdo = null;
     protected $sql = "";
@@ -47,7 +47,6 @@ class model
         }
 
         $this->sta->execute();
-
         return $this->sta;
     }
 
