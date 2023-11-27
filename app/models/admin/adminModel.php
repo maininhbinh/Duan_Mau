@@ -26,9 +26,9 @@ class AdminModel extends Model
 
     public function addCategory($name, $imager)
     {
-        $sql = "INSERT INTO $this->category(name, imager) values(?,?)";
+        $sql = "INSERT INTO $this->category(name, imager, is_delete) values(?,?,?)";
         $this->setQuery($sql);
-        return $this->execute([$name, $imager]);
+        return $this->execute([$name, $imager, 0]);
     }
 
     public function getOneCategory($id)
@@ -51,5 +51,13 @@ class AdminModel extends Model
 
         $this->setQuery($sql);
         return $this->execute([1, $id]);
+    }
+
+    public function activeCategory($id)
+    {
+        $sql = "UPDATE $this->category SET is_delete = ? WHERE id = ?";
+
+        $this->setQuery($sql);
+        return $this->execute([0, $id]);
     }
 }

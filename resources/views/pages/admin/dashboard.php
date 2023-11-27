@@ -1,4 +1,8 @@
-<?php include(APP_DIR . '/resources/views/layouts/admin/header.php');
+<?php
+
+use Modules\Stogare;
+
+include(APP_DIR . '/resources/views/layouts/admin/header.php');
 if (isset($data['users'])) {
     $users = $data['users'];
 }
@@ -308,6 +312,9 @@ if (isset($data['users'])) {
                                     Avatar
                                 </th>
                                 <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                                    phone
+                                </th>
+                                <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                                     Address
                                 </th>
                                 <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
@@ -334,10 +341,15 @@ if (isset($data['users'])) {
                                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                         <div class="flex items-center space-x-4">
                                             <div class="avatar h-9 w-9">
-                                                <img class="mask is-squircle" src="<?= APP_URL ?>/public/images/admin/avatar/avatar-20.jpg" alt="avatar" />
+                                                <img class="mask is-squircle" src="<?= APP_URL ?><?= $user['avatar'] == null  ? 'public/images/avatar/user.png'  : Stogare::url($user['avatar']) ?>" alt="avatar" />
                                             </div>
 
                                         </div>
+                                    </td>
+                                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                                        <p class="font-medium">
+                                            <?= $user['phone'] ?? '...' ?>
+                                        </p>
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                         <p class="w-48 overflow-hidden text-ellipsis text-xs+">

@@ -1,4 +1,7 @@
 <?php
+
+use Modules\Stogare;
+
 if (isset($data['category'])) {
     $category = $data['category'];
 }
@@ -78,7 +81,7 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php');
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                     <div class="avatar flex">
-                                        <img class="rounded-full" src="<?= APP_URL ?>public/upload/<?= $item['imager'] ?>" alt="avatar" />
+                                        <img class="rounded-full" src="<?= APP_URL ?><?= Stogare::url($item['imager']) ?>" alt="avatar" />
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
@@ -95,7 +98,7 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php');
                                         <a href="<?= APP_URL ?>admin/category/<?= $item['id'] ?>/edit" class="btn bg-info/10 font-medium text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                             Edit
                                         </a>
-                                        <a href="<?= APP_URL ?>admin/category/<?= $item['id'] ?>/delete" class="btn bg-secondary/10 font-medium text-secondary hover:bg-secondary/20 focus:bg-secondary/20 active:bg-secondary/25 dark:bg-secondary-light/10 dark:text-secondary-light dark:hover:bg-secondary-light/20 dark:focus:bg-secondary-light/20 dark:active:bg-secondary-light/25">
+                                        <a href="<?= APP_URL ?>admin/category/<?= $item['id'] ?>/<?= $item['is_delete'] == null || $item['is_delete'] == 0 ? 'in_active' : 'active' ?>" class="btn bg-secondary/10 font-medium text-secondary hover:bg-secondary/20 focus:bg-secondary/20 active:bg-secondary/25 dark:bg-secondary-light/10 dark:text-secondary-light dark:hover:bg-secondary-light/20 dark:focus:bg-secondary-light/20 dark:active:bg-secondary-light/25" onclick="return confirm('bạn có muốn <?= $item['is_delete'] == null || $item['is_delete'] == 0 ? 'in_active' : 'active' ?> không?')">
                                             <?= $item['is_delete'] == null || $item['is_delete'] == 0 ? 'in_active' : 'active' ?>
                                         </a>
                                     </div>

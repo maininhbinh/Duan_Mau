@@ -179,6 +179,14 @@ img {
 .navbar .row {
   justify-content: space-between;
 }
+.navbar .row .logo {
+  align-items: center;
+  display: flex;
+}
+.navbar .row .logo p {
+  margin-left: 5px;
+  font-weight: 700;
+}
 .navbar .row .nav-list a {
   display: inline-block;
   padding: 1rem;
@@ -428,8 +436,8 @@ img {
   white-space: nowrap;
   font-size: 16px;
   line-height: 24px;
-  font-weight: 500;
-  color: #292930;
+  font-weight: 600;
+  color: rgb(100, 116, 139);
   font-family: "DM Sans", sans-serif;
 }
 .main .category .click-slider .click-list .click-track .click-slide:hover img {

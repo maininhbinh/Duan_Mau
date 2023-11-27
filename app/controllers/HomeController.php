@@ -2,24 +2,28 @@
 
 namespace App\Controllers;
 
+use App\Models\HomeModel;
 use Modules\core;
 
 class HomeController
 {
-    use core;
+    public $home;
 
     public function __construct()
     {
+        $this->home = new HomeModel();
     }
 
     public function index()
     {
-
-        return $this->view('pages.client.home');
+        // $user = 
+        $category = $this->home->getAllCategory();
+        $user = $this->home->getAllUser();
+        return view('pages.client.home', compact('category', 'user'));
     }
 
     public function detailProduct()
     {
-        return $this->view('pages.client.detail-product');
+        return view('pages.client.detail-product');
     }
 }

@@ -15,11 +15,18 @@ class UserModel extends Model
         return $this->execute([$name, $email, $password, $id_role, $is_delete]);
     }
 
-    public function getUser()
+    public function getAllUser()
     {
         $sql = "SELECT * FROM $this->user";
         $this->setQuery($sql);
         return $this->loadAllRow();
+    }
+
+    public function getOneUser($id)
+    {
+        $sql = "SELECT * FROM $this->user WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->loadRow([$id]);
     }
 
     public function checkEmail($email)
@@ -38,5 +45,26 @@ class UserModel extends Model
         $data = $this->loadRow([$password]);
 
         return $data;
+    }
+
+    public function updateAvatar($nameFile, $id)
+    {
+        $sql = "UPDATE $this->user SET avatar = ? WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->execute([$nameFile, $id]);
+    }
+
+    public function updatePassword($newPassword, $id)
+    {
+        $sql = "UPDATE $this->user SET password = ? WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->execute([$newPassword, $id]);
+    }
+
+    public function updateProfile($name, $phone, $address, $id)
+    {
+        $sql = "UPDATE $this->user SET name = ?, phone = ?, address = ? WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->execute([$name, $phone, $address, $id]);
     }
 }

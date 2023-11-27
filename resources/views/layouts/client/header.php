@@ -11,7 +11,6 @@
   <!-- ====== Swiper CSS ====== -->
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <!-- ====== Custom CSS ====== -->
-  <link rel="stylesheet" href="<?= APP_URL ?>public/css/app.css" />
   <link rel="stylesheet" href="<?= APP_URL ?>public/css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Fashion Shop</title>
@@ -22,15 +21,13 @@
 
     <div class="row container d-flex">
 
-      <div class="logo">
+      <a href="<?= APP_URL ?>" class="logo">
 
-        <a href="<?= APP_URL ?>" class="flex items-center space-x-2">
-          <img class="h-12 w-12" src="<?= APP_URL ?>/public/images/admin/app-logo.svg" alt="logo" />
-          <p class="text-xl font-semibold uppercase text-slate-700 dark:text-navy-100">
-            365shop
-          </p>
-        </a>
-      </div>
+        <img class="h-12 w-12" src="<?= APP_URL ?>/public/images/admin/app-logo.svg" alt="logo" />
+        <p class="text-xl font-semibold uppercase text-slate-700 dark:text-navy-100">
+          365shop
+        </p>
+      </a>
 
       <div class="nav-list d-flex">
 
@@ -59,20 +56,24 @@
 
             <div class="border-profile">
               <div class="profile-content">
-                <?php if (isset($_SESSION['user'])) { ?>
+                <?php
+
+                use Modules\Stogare;
+
+                if (isset($_SESSION['user'])) { ?>
                   <div class="info">
                     <div class="avatar">
-                      <img src="<?= APP_URL ?>public/images/avatar/image-8.webp" alt="">
+                      <img src=" <?= $_SESSION['user']['avatar'] == null ? APP_URL . 'public/images/avatar/user.png' :  APP_URL . Stogare::url($_SESSION['user']['avatar']) ?>" alt="">
                     </div>
                     <div class="info-content">
                       <h4><?= $_SESSION['user']['name'] ?></h4>
-                      <p>Los Agneles</p>
+                      <p><?= $_SESSION['user']['address'] == null || $_SESSION['user']['address'] == '' ? '...'   : $_SESSION['user']['address'] ?></p>
                     </div>
                   </div>
 
                   <div class="border"></div>
 
-                  <a class="my account">
+                  <a class="my account" href="<?= APP_URL ?>profile/<?= $_SESSION['user']['id'] ?>">
                     <i class="fa-solid fa-user"></i>
                     <p>My account</p>
                   </a>
@@ -84,24 +85,24 @@
 
                   <div class="border"></div>
 
-                  <a href="logout" class="logout" onclick="return confirm('bạn có muốn đăng xuất không?')">
+                  <a href="<?= APP_URL ?>logout" class="logout" onclick="return confirm('bạn có muốn đăng xuất không?')">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <p>Logout</p>
                   </a>
                 <?php } else { ?>
-                  <a href="signup" class="signup">
+                  <a href="<?= APP_URL ?>signup" class="signup">
                     <i class="fa-solid fa-user-plus"></i>
                     <p>signup</p>
                   </a>
 
-                  <a href="signin" class="signin">
+                  <a href="<?= APP_URL ?>signin" class="signin">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <p>signin</p>
                   </a>
                 <?php } ?>
 
                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['id_role'] == 1) { ?>
-                  <a href="admin/dashboard" class="signin">
+                  <a href="<?= APP_URL ?>admin/dashboard" class="signin">
                     <i class="fa-solid fa-user-tie"></i>
                     <p>Quản trị</p>
                   </a>

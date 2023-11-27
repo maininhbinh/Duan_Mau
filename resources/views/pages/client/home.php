@@ -1,4 +1,7 @@
-<?php include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
+<?php
+$category = $data['category'];
+$user = $data['user'];
+include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
 <div class="header">
 
     <div class="header-banner">
@@ -59,54 +62,12 @@
             </div>
             <div class="click-list">
                 <div class="click-track">
-                    <div class="click-slide">
-                        <img src="<?= APP_URL ?>public/assets/category/elec-1.webp" alt="" draggable="false">
-                        <h6>Computer</h6>
-                    </div>
-                    <div class="click-slide">
-                        <img src="<?= APP_URL ?>public/assets/banner-kid.png" alt="img" draggable="false">
-                        <h6>kids</h6>
-                    </div>
-                    <div class="click-slide">
-                        <img src="<?= APP_URL ?>public/assets/category/elec-2.webp" alt="img" draggable="false">
-                        <h6>Laptop</h6>
-                    </div>
-                    <div class="click-slide">
-                        <img src="<?= APP_URL ?>public/assets/category/elec-11.webp" alt="img" draggable="false">
-                        <h6>Headphones</h6>
-                    </div>
-                    <div class="click-slide">
-                        <img src="<?= APP_URL ?>public/assets/category/elec-4.webp" alt="img" draggable="false">
-                        <h6>Camera & Photosdfsdf</h6>
-                    </div>
-                    <div class="click-slide">
-                        <img src="<?= APP_URL ?>public/assets/category/elec-5.webp" alt="img" draggable="false">
-                        <h6>kids</h6>
-                    </div>
-                    <div class="click-slide">
-                        <img src="<?= APP_URL ?>public/assets/category/elec-11.webp" alt="img" draggable="false">
-                        <h6>Headphones</h6>
-                    </div>
-                    <div class="click-slide">
-                        <img src="<?= APP_URL ?>public/assets/category/elec-4.webp" alt="img" draggable="false">
-                        <h6>Camera & Photosdfsdf</h6>
-                    </div>
-                    <div class="click-slide">
-                        <img src="<?= APP_URL ?>public/assets/category/elec-5.webp" alt="img" draggable="false">
-                        <h6>kids</h6>
-                    </div>
-                    <div class="click-slide">
-                        <img src="<?= APP_URL ?>public/assets/category/elec-11.webp" alt="img" draggable="false">
-                        <h6>Headphones</h6>
-                    </div>
-                    <div class="click-slide">
-                        <img src="<?= APP_URL ?>public/assets/category/elec-4.webp" alt="img" draggable="false">
-                        <h6>Camera & Photosdfsdf</h6>
-                    </div>
-                    <div class="click-slide">
-                        <img src="<?= APP_URL ?>public/assets/category/elec-5.webp" alt="img" draggable="false">
-                        <h6>kids</h6>
-                    </div>
+                    <?php foreach ($category as $item) { ?>
+                        <div class="click-slide">
+                            <img src="<?= APP_URL ?>public/upload/<?= $item['imager'] ?>" alt="" draggable="false">
+                            <h6><?= $item['name'] ?></h6>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

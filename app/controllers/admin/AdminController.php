@@ -3,12 +3,10 @@
 namespace App\Controllers\Admin;
 
 use App\Models\Admin\AdminModel;
-use Modules\core;
 use Modules\Stogare;
 
 class AdminController
 {
-    use core;
 
     public $admin;
     const PATH_UPLOAD = 'category';
@@ -21,18 +19,18 @@ class AdminController
     public function dashboard()
     {
         $users = $this->admin->getAllUser();
-        return $this->view('pages.admin.dashboard', compact('users'));
+        return view('pages.admin.dashboard', compact('users'));
     }
 
     public function category()
     {
         $category = $this->admin->getAllCategory();
-        return $this->view('pages.admin.category', compact('category'));
+        return view('pages.admin.category', compact('category'));
     }
 
     public function categoryCreate()
     {
-        return $this->view('pages.admin.categoryForm');
+        return view('pages.admin.categoryForm');
     }
 
     public function categoryStore()
@@ -47,7 +45,7 @@ class AdminController
             $checkCategory = false;
         }
 
-        if (empty($imager)) {
+        if (empty($imager['name'])) {
             $_SESSION['message']['error'][] = 'bạn không được để trống ảnh';
             $checkCategory = false;
         }
@@ -69,7 +67,7 @@ class AdminController
     {
         $category = $this->admin->getOneCategory($id);
 
-        $this->view('pages.admin.categoryForm', compact('category'));
+        return view('pages.admin.categoryForm', compact('category'));
     }
 
     public function categoryUpdate($id)
@@ -118,7 +116,15 @@ class AdminController
     public function categoryInActive($id)
     {
         $this->admin->inActiveCategory($id);
-        $_SESSION['message']['success'] = 'delete thành công';
+        $_SESSION['message']['success'] = 'in_active thành công';
+        header("location: " . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+
+    public function categoryActive($id)
+    {
+        $this->admin->activeCategory($id);
+        $_SESSION['message']['success'] = 'active thành công';
         header("location: " . $_SERVER['HTTP_REFERER']);
         exit;
     }

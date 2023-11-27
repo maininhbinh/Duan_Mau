@@ -1,4 +1,7 @@
 <?php
+
+use Modules\Stogare;
+
 if (isset($data['category'])) {
     $category = $data['category'];
 }
@@ -126,7 +129,7 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php'); ?>
                         </label>
                         <?php if (isset($category)) { ?>
                             <div class="avatar h-24 w-24 ml-4">
-                                <img class="mask is-squircle" src="<?= APP_URL ?>public/upload/<?= $category['imager'] ?>" alt="avatar" />
+                                <img class="mask is-squircle" src="<?= APP_URL ?><?= Stogare::url($category['imager']) ?>" alt="avatar" />
                             </div>
                         <?php } ?>
                     </div>

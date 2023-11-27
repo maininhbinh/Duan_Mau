@@ -15,13 +15,19 @@ class Stogare
         return false;
     }
 
+    static public function url($path)
+    {
+        return self::$path_upload . $path;
+    }
+
     static public function put($path, $imager)
     {
         $fomat = [
             'png',
             'jpg',
             'jpeg',
-            'dpf'
+            'dpf',
+            'webp'
         ];
 
         $file_name = $imager['name'];
