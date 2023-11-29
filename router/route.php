@@ -8,7 +8,7 @@ $url = !isset($_GET['url']) ? "/" : $_GET['url'];
 
 $router->get('/', [App\Controllers\HomeController::class, 'index']);
 
-$router->get('product/detail', [\App\Controllers\HomeController::class, 'detailProduct']);
+$router->get('product/{id}/detail', [\App\Controllers\HomeController::class, 'detailProduct']);
 
 // $router->get('checkout', [\App\Controllers\HomeController::class, 'checkout']);
 
@@ -33,6 +33,11 @@ $router->get('admin/category/{id}/active', [\App\Controllers\Admin\AdminControll
 $router->get('admin/category/{id}/edit', [\App\Controllers\Admin\AdminController::class, 'categoryEdit'])->middleware('auth');
 $router->post('admin/category/add', [\App\Controllers\Admin\AdminController::class, 'categoryStore'])->middleware('auth');
 $router->post('admin/category/{id}/update', [\App\Controllers\Admin\AdminController::class, 'categoryUpdate'])->middleware('auth');
+
+$router->get('admin/product', [\App\Controllers\Admin\AdminController::class, 'product'])->middleware('auth');
+$router->get('admin/product/add', [\App\Controllers\Admin\AdminController::class, 'productCreate'])->middleware('auth');
+$router->post('admin/product/add', [\App\Controllers\Admin\AdminController::class, 'productStore'])->middleware('auth');
+$router->get('admin/product/{id}/edit', [\App\Controllers\Admin\AdminController::class, 'productCreate'])->middleware('auth');
 
 $router->get('*', function () {
     require_once 'resources/views/pages/404.php';

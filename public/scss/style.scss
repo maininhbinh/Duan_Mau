@@ -714,6 +714,7 @@ main{
           .product-card{
             display: flex;
             flex-direction: column;
+            height: 100%;
     
             .product-thumbnail{
               
@@ -723,12 +724,17 @@ main{
               background-color: rgb(248 250 252/1);
               border-radius: 1.5rem;
               display: flex;
-              height: 100%;
               flex-direction: column;
+              height: 100%;
   
               a{
                 position: absolute;
                 inset: 0;
+              }
+
+              img{
+                height: 100%;
+                object-fit: cover;
               }
     
               .action{
@@ -795,7 +801,9 @@ main{
             }
     
             .show-info{
-    
+              flex: 1 1 auto;
+              display: flex;
+              flex-direction: column;
     
               .variant{
                 overflow: hidden;
@@ -838,19 +846,23 @@ main{
                   overflow: hidden;
                   text-overflow: ellipsis;
                   font-weight: 600;
-                  font-size: 1.7rem;
+                  font-size: 2.5rem;
                 }
                 p{
+                  white-space: pre-wrap;
                   width: 80%;
-                  white-space: nowrap;
                   overflow: hidden;
                   text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 2; /* Số dòng muốn hiển thị */
+                  -webkit-box-orient: vertical;
                   color: rgb(100 116 139/1);
                   font-size: 1.5rem;
                 }
               }
   
               .product-status{
+                margin-top: auto;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -1040,6 +1052,8 @@ main{
 
     .thumbnail-product{
       flex-basis: 55%;
+      border-radius: 2rem;
+      background-color: rgb(248, 250, 252);
 
       .detail-thumbnail_product{
         width: 100%;
@@ -1245,22 +1259,21 @@ main{
             }
           }
         }
-      }
-
-      .border{
-        border-bottom-width:1px;
-        border:1px solid #e5e7eb;
-        margin: 50px 0;
-      }
-
-      .description{
-        h3{
-          font-weight: 600;
-        }
-        p{
-          color: rgb(71 85 105/1);
-        }
-      }
+      } 
+    }
+  }
+  .border{
+    border-bottom-width:1px;
+    width: 100%;
+    border:1px solid #e5e7eb;
+    margin: 50px 0;
+  }
+  .description{
+    h3{
+      font-weight: 600;
+    }
+    p{
+      color: rgb(71 85 105/1);
     }
   }
   .same-product{
@@ -1301,7 +1314,7 @@ main{
           overflow-x: hidden;
           scroll-snap-type: x mandatory;
           grid-auto-flow: column;
-          grid-auto-columns: calc((100% / 3) - 15px);
+          grid-auto-columns: calc((100% / 4) - 15px);
           gap: 30px;
           scroll-behavior: smooth;
 
@@ -1315,6 +1328,7 @@ main{
             .product-card{
               display: flex;
               flex-direction: column;
+              height: 100%;
       
               .product-thumbnail{
                 user-select: none;
@@ -1324,14 +1338,14 @@ main{
                 background-color: rgb(248 250 252/1);
                 border-radius: 1.5rem;
                 display: flex;
-                height: 100%;
                 flex-direction: column;
+                height: 100%;
     
                 a{
                   position: absolute;
                   inset: 0;
                 }
-      
+
                 .action{
                   transition: .3s;
                   cursor: pointer;
@@ -1396,7 +1410,9 @@ main{
               }
       
               .show-info{
-      
+                flex: 1 1 auto;
+                display: flex;
+                flex-direction: column;
       
                 .variant{
                   overflow: hidden;
@@ -1439,19 +1455,23 @@ main{
                     overflow: hidden;
                     text-overflow: ellipsis;
                     font-weight: 600;
-                    font-size: 1.7rem;
+                    font-size: 2.5rem;
                   }
                   p{
+                    white-space: pre-wrap;
                     width: 80%;
-                    white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2; /* Số dòng muốn hiển thị */
+                    -webkit-box-orient: vertical;
                     color: rgb(100 116 139/1);
                     font-size: 1.5rem;
                   }
                 }
     
                 .product-status{
+                  margin-top: auto;
                   display: flex;
                   align-items: center;
                   justify-content: space-between;
@@ -1496,6 +1516,8 @@ main{
     .main-detail{
 
       .thumbnail-product{
+        border-radius: 2rem;
+        background-color: rgb(248, 250, 252);
 
         flex-basis: 100%;
       }

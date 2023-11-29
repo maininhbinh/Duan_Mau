@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ========== Google Fonts =========== */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Aclonica&display=swap");
@@ -578,6 +579,7 @@ main .products .product-list .product-track form {
 main .products .product-list .product-track form .product-card {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 main .products .product-list .product-track form .product-card .product-thumbnail {
   object-fit: cover;
@@ -586,12 +588,16 @@ main .products .product-list .product-track form .product-card .product-thumbnai
   background-color: rgb(248, 250, 252);
   border-radius: 1.5rem;
   display: flex;
-  height: 100%;
   flex-direction: column;
+  height: 100%;
 }
 main .products .product-list .product-track form .product-card .product-thumbnail a {
   position: absolute;
   inset: 0;
+}
+main .products .product-list .product-track form .product-card .product-thumbnail img {
+  height: 100%;
+  object-fit: cover;
 }
 main .products .product-list .product-track form .product-card .product-thumbnail .action {
   transition: 0.3s;
@@ -650,6 +656,11 @@ main .products .product-list .product-track form .product-card .product-thumbnai
 main .products .product-list .product-track form .product-card .product-thumbnail:hover .action {
   bottom: 20px;
 }
+main .products .product-list .product-track form .product-card .show-info {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
 main .products .product-list .product-track form .product-card .show-info .variant {
   overflow: hidden;
   margin-top: 20px;
@@ -683,17 +694,21 @@ main .products .product-list .product-track form .product-card .show-info .produ
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 600;
-  font-size: 1.7rem;
+  font-size: 2.5rem;
 }
 main .products .product-list .product-track form .product-card .show-info .product-content p {
+  white-space: pre-wrap;
   width: 80%;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Số dòng muốn hiển thị */
+  -webkit-box-orient: vertical;
   color: rgb(100, 116, 139);
   font-size: 1.5rem;
 }
 main .products .product-list .product-track form .product-card .show-info .product-status {
+  margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -825,6 +840,8 @@ main .products .product-list .product-track form .product-card .show-info .produ
 }
 .detail-product .main-detail .thumbnail-product {
   flex-basis: 55%;
+  border-radius: 2rem;
+  background-color: rgb(248, 250, 252);
 }
 .detail-product .main-detail .thumbnail-product .detail-thumbnail_product {
   width: 100%;
@@ -991,15 +1008,16 @@ main .products .product-list .product-track form .product-card .show-info .produ
 .detail-product .main-detail .info-product .detail-info_product .variant .order-shopping .add-cart i {
   margin-right: 13px;
 }
-.detail-product .main-detail .info-product .border {
+.detail-product .border {
   border-bottom-width: 1px;
+  width: 100%;
   border: 1px solid #e5e7eb;
   margin: 50px 0;
 }
-.detail-product .main-detail .info-product .description h3 {
+.detail-product .description h3 {
   font-weight: 600;
 }
-.detail-product .main-detail .info-product .description p {
+.detail-product .description p {
   color: rgb(71, 85, 105);
 }
 .detail-product .same-product {
@@ -1033,7 +1051,7 @@ main .products .product-list .product-track form .product-card .show-info .produ
   overflow-x: hidden;
   scroll-snap-type: x mandatory;
   grid-auto-flow: column;
-  grid-auto-columns: calc(33.3333333333% - 15px);
+  grid-auto-columns: calc(25% - 15px);
   gap: 30px;
   scroll-behavior: smooth;
 }
@@ -1047,6 +1065,7 @@ main .products .product-list .product-track form .product-card .show-info .produ
 .detail-product .same-product .products-slider .product-list .product-track form .product-card {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 .detail-product .same-product .products-slider .product-list .product-track form .product-card .product-thumbnail {
   user-select: none;
@@ -1056,8 +1075,8 @@ main .products .product-list .product-track form .product-card .show-info .produ
   background-color: rgb(248, 250, 252);
   border-radius: 1.5rem;
   display: flex;
-  height: 100%;
   flex-direction: column;
+  height: 100%;
 }
 .detail-product .same-product .products-slider .product-list .product-track form .product-card .product-thumbnail a {
   position: absolute;
@@ -1120,6 +1139,11 @@ main .products .product-list .product-track form .product-card .show-info .produ
 .detail-product .same-product .products-slider .product-list .product-track form .product-card .product-thumbnail:hover .action {
   bottom: 20px;
 }
+.detail-product .same-product .products-slider .product-list .product-track form .product-card .show-info {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
 .detail-product .same-product .products-slider .product-list .product-track form .product-card .show-info .variant {
   overflow: hidden;
   margin-top: 20px;
@@ -1153,17 +1177,21 @@ main .products .product-list .product-track form .product-card .show-info .produ
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 600;
-  font-size: 1.7rem;
+  font-size: 2.5rem;
 }
 .detail-product .same-product .products-slider .product-list .product-track form .product-card .show-info .product-content p {
+  white-space: pre-wrap;
   width: 80%;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Số dòng muốn hiển thị */
+  -webkit-box-orient: vertical;
   color: rgb(100, 116, 139);
   font-size: 1.5rem;
 }
 .detail-product .same-product .products-slider .product-list .product-track form .product-card .show-info .product-status {
+  margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1190,6 +1218,8 @@ main .products .product-list .product-track form .product-card .show-info .produ
 
 @media (max-width: 1600px) {
   .detail-product .main-detail .thumbnail-product {
+    border-radius: 2rem;
+    background-color: rgb(248, 250, 252);
     flex-basis: 100%;
   }
   .detail-product .main-detail .info-product {

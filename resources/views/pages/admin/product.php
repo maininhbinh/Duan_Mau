@@ -2,8 +2,8 @@
 
 use Modules\Stogare;
 
-if (isset($data['category'])) {
-    $category = $data['category'];
+if (isset($data['products'])) {
+    $products = $data['products'];
 }
 
 include(APP_DIR . '/resources/views/layouts/admin/header.php');
@@ -13,7 +13,7 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php');
     <div>
         <div class="flex items-center justify-between">
             <h2 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
-                Danh mục
+                Sản phẩm
             </h2>
             <div class="flex">
                 <div class="flex items-center" x-data="{isInputActive:false}">
@@ -36,7 +36,7 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php');
                         <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
                             <ul>
                                 <li>
-                                    <a href="<?= APP_URL ?>admin/category/add" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Thêm danh mục</a>
+                                    <a href="<?= APP_URL ?>admin/product/add" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Thêm danh mục</a>
                                 </li>
                             </ul>
                         </div>
@@ -55,15 +55,24 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php');
             <div class="is-scrollbar-hidden min-w-full overflow-x-auto">
                 <table class="w-full text-left">
                     <thead>
-                        <tr align="center">
+                        <tr>
                             <th class="whitespace-nowrap rounded-tl-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                                 #
+                            </th>
+                            <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                                Name
                             </th>
                             <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                                 Avatar
                             </th>
                             <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                                Name
+                                Quantity
+                            </th>
+                            <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                                Price
+                            </th>
+                            <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                                Category
                             </th>
                             <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                                 Status
@@ -74,32 +83,41 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php');
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($category as $key => $item) { ?>
-                            <tr class="border-y border-transparent" align="center">
+                        <?php foreach ($products as $key => $product) { ?>
+                            <tr class="border-y border-transparent">
                                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                     <?= ++$key ?>
                                 </td>
+                                <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                                    <?= $product['name'] ?>
+                                </td>
                                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                     <div class="avatar flex">
-                                        <img class="rounded-full" src="<?= APP_URL ?><?= Stogare::url($item['imager']) ?>" alt="avatar" />
+                                        <img class="rounded-full" src="<?= APP_URL ?><?= Stogare::url($product['imager']) ?>" alt="avatar" />
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
-                                    <?= $item['name'] ?>
+                                    <?= $product['quantity_stock'] ?>
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                                    <?= number_format($product['price'], 0, ',', '.') ?> <u>đ</u>
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                                    <?= $product['category_name'] ?>
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                     <div class="badge space-x-2.5 px-0 text-primary dark:text-accent-light">
                                         <div class="h-2 w-2 rounded-full bg-current"></div>
-                                        <span><?= $item['is_delete'] == null || $item['is_delete'] == 0 ? 'hoạt động' : 'không hoạt động' ?></span>
+                                        <span><?= $product['quantity_stock'] > 1 ? 'hết hàng' : 'còn hàng' ?></span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                                    <div class="flex space-x-2 justify-center ">
-                                        <a href="<?= APP_URL ?>admin/category/<?= $item['id'] ?>/edit" class="btn bg-info/10 font-medium text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                    <div class="flex space-x-2">
+                                        <a href="<?= APP_URL ?>admin/product/<?= $product['id'] ?>/edit" class="btn bg-info/10 font-medium text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                             Edit
                                         </a>
-                                        <a href="<?= APP_URL ?>admin/category/<?= $item['id'] ?>/<?= $item['is_delete'] == null || $item['is_delete'] == 0 ? 'in_active' : 'active' ?>" class="btn bg-secondary/10 font-medium text-secondary hover:bg-secondary/20 focus:bg-secondary/20 active:bg-secondary/25 dark:bg-secondary-light/10 dark:text-secondary-light dark:hover:bg-secondary-light/20 dark:focus:bg-secondary-light/20 dark:active:bg-secondary-light/25" onclick="return confirm('bạn có muốn <?= $item['is_delete'] == null || $item['is_delete'] == 0 ? 'in_active' : 'active' ?> không?')">
-                                            <?= $item['is_delete'] == null || $item['is_delete'] == 0 ? 'in_active' : 'active' ?>
+                                        <a href="<?= APP_URL ?>admin/product/<?= $product['id'] ?>/delete" class="btn bg-secondary/10 font-medium text-secondary hover:bg-secondary/20 focus:bg-secondary/20 active:bg-secondary/25 dark:bg-secondary-light/10 dark:text-secondary-light dark:hover:bg-secondary-light/20 dark:focus:bg-secondary-light/20 dark:active:bg-secondary-light/25" onclick="return confirm('bạn có muốn <?= $product['is_delete'] == null || $product['is_delete'] == 0 ? 'in_active' : 'active' ?> không?')">
+                                            Delete
                                         </a>
                                     </div>
                                 </td>

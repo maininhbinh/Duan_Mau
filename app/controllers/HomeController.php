@@ -16,14 +16,16 @@ class HomeController
 
     public function index()
     {
-        // $user = 
+        $products = $this->home->getALLProduct();
         $category = $this->home->getAllCategory();
         $user = $this->home->getAllUser();
-        return view('pages.client.home', compact('category', 'user'));
+        return view('pages.client.home', compact('category', 'user', 'products'));
     }
 
-    public function detailProduct()
+    public function detailProduct($id)
     {
-        return view('pages.client.detail-product');
+        $product = $this->home->getOneProduct($id);
+        $productSame = $this->home->getProductSame($id, $product['id_category']);
+        return view('pages.client.detail-product', compact('product', 'productSame'));
     }
 }

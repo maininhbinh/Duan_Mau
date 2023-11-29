@@ -19,6 +19,8 @@
 
     <!-- Javascript Assets -->
     <script src="<?= APP_URL ?>public/js/admin.js" defer></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="<?= APP_URL ?>public/css/filepond.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
