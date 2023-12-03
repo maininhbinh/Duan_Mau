@@ -9,6 +9,12 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
     <div class="main-detail">
         <div class="thumbnail-product">
             <div class="detail-thumbnail_product">
+                <?php if ($product['discount'] != 0 && $product['discount'] != null) { ?>
+                    <div class="discount">
+                        <i class="fa-solid fa-tag"></i>
+                        <span>-<?= intval($product['discount'] / $product['price'] * 100) ?>%</span>
+                    </div>
+                <?php } ?>
                 <img src="<?= APP_URL ?><?= Stogare::url($product['imager']) ?>" alt="">
             </div>
         </div>
@@ -30,7 +36,7 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
                         <div class="detail-raiting">
                             <span>4.9</span>
                             <span>·</span>
-                            <span>142 reviews</span>
+                            <span><?= $product['view'] ?> reviews</span>
                         </div>
                     </div>
                 </div>
@@ -124,17 +130,17 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
         </div>
         <div class="border"></div>
         <div class="description">
-            <h3>
-                Mô tả:
-            </h3>
             <p>
                 <?= html_entity_decode($product['description']) ?>
             </p>
         </div>
     </div>
     <div class="same-product">
-        <div class="title">
-            <h2>
+        <div class="section-title_wapper">
+            <span>
+                <i class="fa-solid fa-cart-shopping"></i> New
+            </span>
+            <h2 class="title text-3xl">
                 Sản phẩm cùng loại
             </h2>
         </div>
@@ -154,6 +160,12 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
                         <form action="" method="post">
                             <div class="product-card">
                                 <div class="product-thumbnail">
+                                    <?php if ($item['discount'] != 0 && $item['discount'] != null) { ?>
+                                        <div class="discount">
+                                            <i class="fa-solid fa-tag"></i>
+                                            <span>-<?= intval($item['discount'] / $item['price'] * 100) ?>%</span>
+                                        </div>
+                                    <?php } ?>
                                     <a href="<?= APP_URL ?>product/<?= $item['id'] ?>/detail"></a>
                                     <img src="<?= APP_URL ?><?= Stogare::url($item['imager']) ?>" alt="">
                                     <div class="action">

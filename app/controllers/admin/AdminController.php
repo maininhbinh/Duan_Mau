@@ -25,13 +25,14 @@ class AdminController
 
     public function category()
     {
-        $category = $this->admin->getAllCategory();
+        $category = $this->admin->getAllCategoryJoin();
         return view('pages.admin.category', compact('category'));
     }
 
     public function categoryCreate()
     {
-        return view('pages.admin.categoryForm');
+        $category_id = array_column($this->admin->getAllCategory(), 'name', 'id');
+        return view('pages.admin.categoryForm', compact('category_id'));
     }
 
     public function categoryStore()
@@ -39,32 +40,33 @@ class AdminController
         $checkCategory = true;
 
         $name = htmlspecialchars(strip_tags(trim($_POST['name'])));
+        $parent = !empty(trim($_POST['id_category'])) ? htmlspecialchars(strip_tags(trim($_POST['id_category']))) : null;
         $imager = $_FILES['imager'];
+        $name_file = '';
 
         if (!$name) {
             $_SESSION['message']['error'][] = 'bạn không được để trống trường name';
             $checkCategory = false;
         }
 
-        if (empty($imager['name'])) {
+        if ($parent == null  && empty($imager['name'])) {
             $_SESSION['message']['error'][] = 'bạn không được để trống ảnh';
             $checkCategory = false;
         }
 
         if (!empty($imager['name'])) {
             $name_file = Stogare::put(self::PATH_UPLOAD_CATEGORY, $imager);
-        }
-
-        if (!$name_file) {
-            $_SESSION['message']['error'][] = 'tải tệp tin thất bại';
-            $checkCategory = false;
+            if (!$name_file) {
+                $_SESSION['message']['error'][] = 'tải tệp tin thất bại';
+                $checkCategory = false;
+            }
         }
 
         if (!$checkCategory) {
             header("location: " . $_SERVER['HTTP_REFERER']);
             exit;
         } else {
-            $this->admin->addCategory($name, $name_file);
+            $this->admin->addCategory($name, $parent, $name_file);
             $_SESSION['message']['success'] = 'thêm danh mục thành công';
             header("location: " . $_SERVER['HTTP_REFERER']);
             exit;
@@ -75,17 +77,19 @@ class AdminController
     public function categoryEdit($id)
     {
         $category = $this->admin->getOneCategory($id);
-
-        return view('pages.admin.categoryForm', compact('category'));
+        $category_id = array_column($this->admin->getAllCategory(), 'name', 'id');
+        return view('pages.admin.categoryForm', compact('category', 'category_id'));
     }
 
     public function categoryUpdate($id)
     {
         $checkCategory = true;
         $category = $this->admin->getOneCategory($id);
+        $parent = !empty(trim($_POST['id_category'])) ? htmlspecialchars(strip_tags(trim($_POST['id_category']))) : null;
 
         $id = $category['id'];
         $old_imager = $category['imager'];
+        $name_file = '';
 
         $name = htmlspecialchars(strip_tags(trim($_POST['name'])));
         $imager = $_FILES['imager'];
@@ -97,12 +101,16 @@ class AdminController
 
         if (!empty($imager['name'])) {
             $name_file = Stogare::put(self::PATH_UPLOAD_CATEGORY, $imager);
+            if (!$name_file) {
+                $_SESSION['message']['error'][] = 'tải tệp tin thất bại';
+                $checkCategory = false;
+            }
         } else {
             $name_file = $old_imager;
         }
 
-        if (!$name_file) {
-            $_SESSION['message']['error'][] = 'tải tệp tin thất bại';
+        if ($parent == null && empty($name_file)) {
+            $_SESSION['message']['error'][] = 'bạn không được để trống ảnh';
             $checkCategory = false;
         }
 
@@ -111,7 +119,7 @@ class AdminController
             exit;
         } else {
 
-            $this->admin->updateCategory($name, $name_file, $id);
+            $this->admin->updateCategory($name, $parent, $name_file, $id);
 
             if (!empty($imager['name']) && Stogare::exits($old_imager)) {
                 Stogare::delete($old_imager);
@@ -153,7 +161,6 @@ class AdminController
 
     public function productStore()
     {
-
         $checkProduct = true;
 
         $name = htmlspecialchars(strip_tags(trim($_POST['name'])));
@@ -161,6 +168,8 @@ class AdminController
         $quantity_stock = htmlspecialchars(strip_tags(trim($_POST['quantity_stock'])));
         $price = htmlspecialchars(strip_tags(trim($_POST['price'])));
         $description = htmlspecialchars($_POST['description']);
+        $discount = htmlspecialchars(strip_tags(trim($_POST['discount'])));
+
 
         $imager = $_FILES['imager'];
 
@@ -179,8 +188,18 @@ class AdminController
             $checkProduct = false;
         }
 
-        if (!is_numeric($price) || !is_numeric($quantity_stock)) {
-            $_SESSION['message']['error'][] = 'trường price và quantity phải là số';
+        if ($discount >= $price) {
+            $_SESSION['message']['error'][] = 'discount không được lớn hơn trường price';
+            $checkProduct = false;
+        }
+
+        if ($discount < 10000) {
+            $_SESSION['message']['error'][] = 'trường discount phải lới hơn hoặc bằng 10.000đ';
+            $checkProduct = false;
+        }
+
+        if (!is_numeric($price) || !is_numeric($quantity_stock) || !is_numeric($discount)) {
+            $_SESSION['message']['error'][] = 'trường price, quantity và discount phải là số';
             $checkProduct = false;
         }
 
@@ -202,10 +221,17 @@ class AdminController
             header("location: " . $_SERVER['HTTP_REFERER']);
             exit;
         } else {
-            $this->admin->addProduct($id_category, $name, $name_file, $description, $quantity_stock, $price);
+            $this->admin->addProduct($id_category, $name, $name_file, $description, $quantity_stock, $price, $discount);
             $_SESSION['message']['success'] = 'thêm sản phầm thành công';
             header("location: " . $_SERVER['HTTP_REFERER']);
             exit;
         }
+    }
+
+    public function productEdit()
+    {
+        $category = array_column($this->admin->getAllCategory(), 'name', 'id');
+
+        return view('pages.admin.productForm', compact('category'));
     }
 }

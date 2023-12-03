@@ -39,6 +39,10 @@ $router->get('admin/product/add', [\App\Controllers\Admin\AdminController::class
 $router->post('admin/product/add', [\App\Controllers\Admin\AdminController::class, 'productStore'])->middleware('auth');
 $router->get('admin/product/{id}/edit', [\App\Controllers\Admin\AdminController::class, 'productCreate'])->middleware('auth');
 
+$router->get('shop', [\App\Controllers\HomeController::class, 'shop']);
+$router->post('shop', [\App\Controllers\HomeController::class, 'shop']);
+$router->get('setview/{id}', [\App\Controllers\HomeController::class, 'setView']);
+
 $router->get('*', function () {
     require_once 'resources/views/pages/404.php';
 });

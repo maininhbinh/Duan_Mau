@@ -5,6 +5,7 @@ use Modules\Stogare;
 if (isset($data['category'])) {
     $category = $data['category'];
 }
+$category_id = $data['category_id'];
 include(APP_DIR . '/resources/views/layouts/admin/header.php'); ?>
 <main class="main-content w-full px-[var(--margin-x)] pb-8">
     <div class="flex items-center space-x-4 py-5 lg:py-6">
@@ -112,11 +113,23 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php'); ?>
                     <?php
                         unset($_SESSION['message']);
                     } ?>
-                    <label class="block">
-                        <span>Category name</span>
+                    <div class="grid grid-cols-2 gap-4">
+                        <label class="block">
+                            <span>Danh mục</span>
+                            <select name="id_category" class="mt-1.5 w-full" x-init="$el._x_tom = new Tom($el,{create: true,sortField: {field: 'text',direction: 'asc'}})">
+                                <option value=" ">---Chọn---</option>
+                                <?php foreach ($category_id as $key => $item) { ?>
+                                    <option value="<?= $key ?>" <?= isset($category) && $category['id_parent'] == $key ? 'selected' : '' ?>><?= $item ?></option>
+                                <?php } ?>
+                            </select>
 
-                        <input name="name" class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="nhập danh mục" type="text" value="<?= isset($category) ? $category['name'] : '' ?>" />
-                    </label>
+                        </label>
+                        <label class="block">
+                            <span>Category name</span>
+
+                            <input name="name" class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="nhập danh mục" type="text" value="<?= isset($category) ? $category['name'] : '' ?>" />
+                        </label>
+                    </div>
                     <div class="flex items-center">
                         <label class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                             <input type="file" name="imager" accept="image/*" class="pointer-events-none absolute inset-0 h-full w-full opacity-0" />
@@ -127,7 +140,7 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php'); ?>
                                 <span>Choose File</span>
                             </div>
                         </label>
-                        <?php if (isset($category)) { ?>
+                        <?php if (isset($category) && !empty($category['imager'])) { ?>
                             <div class="avatar h-24 w-24 ml-4">
                                 <img class="mask is-squircle" src="<?= APP_URL ?><?= Stogare::url($category['imager']) ?>" alt="avatar" />
                             </div>

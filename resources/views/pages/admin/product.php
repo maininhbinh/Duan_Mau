@@ -108,7 +108,7 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php');
                                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                     <div class="badge space-x-2.5 px-0 text-primary dark:text-accent-light">
                                         <div class="h-2 w-2 rounded-full bg-current"></div>
-                                        <span><?= $product['quantity_stock'] > 1 ? 'hết hàng' : 'còn hàng' ?></span>
+                                        <span><?= $product['quantity_stock'] < 1 ? 'hết hàng' : 'còn hàng' ?></span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">

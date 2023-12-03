@@ -10,6 +10,11 @@ class AdminModel extends Model
     public $category = 'category';
     public $products = 'products';
 
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
+
     public function getAllUser()
     {
         $sql = "SELECT * FROM $this->user WHERE id_role != 1";
@@ -25,11 +30,19 @@ class AdminModel extends Model
         return $this->loadAllRow();
     }
 
-    public function addCategory($name, $imager)
+    public function getAllCategoryJoin()
     {
-        $sql = "INSERT INTO $this->category(name, imager, is_delete) values(?,?,?)";
+        $sql = "SELECT children.*, parent.name as parent_name FROM $this->category as children LEFT JOIN $this->category as parent ON children.id_parent = parent.id";
+
         $this->setQuery($sql);
-        return $this->execute([$name, $imager, 0]);
+        return $this->loadAllRow();
+    }
+
+    public function addCategory($name, $parent, $imager)
+    {
+        $sql = "INSERT INTO $this->category(name, imager, id_parent, is_delete) values(?,?,?,?)";
+        $this->setQuery($sql);
+        return $this->execute([$name, $imager, $parent, 0]);
     }
 
     public function getOneCategory($id)
@@ -39,11 +52,11 @@ class AdminModel extends Model
         return $this->loadRow([$id]);
     }
 
-    public function updateCategory($name, $imager, $id)
+    public function updateCategory($name, $parent, $imager, $id)
     {
-        $sql = "UPDATE $this->category SET name = ?, imager = ? WHERE id = ?";
+        $sql = "UPDATE $this->category SET name = ?, imager = ?, id_parent = ? WHERE id = ?";
         $this->setQuery($sql);
-        return $this->execute([$name, $imager, $id]);
+        return $this->execute([$name, $imager, $parent, $id]);
     }
 
     public function inActiveCategory($id)
@@ -71,10 +84,10 @@ class AdminModel extends Model
         return $this->loadAllRow();
     }
 
-    public function addProduct($id_category, $name, $imager, $description, $quantity_stock, $price)
+    public function addProduct($id_category, $name, $imager, $description, $quantity_stock, $price, $discount)
     {
-        $sql = "INSERT INTO $this->products(id_category, name, imager, description, quantity_stock, price, is_delete) values (?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO $this->products(id_category, name, imager, description, view, quantity_stock, price, discount, is_delete) values (?,?,?,?,?,?,?,?,?)";
         $this->setQuery($sql);
-        return $this->execute([$id_category, $name, $imager, $description, $quantity_stock, $price, 0]);
+        return $this->execute([$id_category, $name, $imager, $description, 0, $quantity_stock, $price, $discount, 0]);
     }
 }

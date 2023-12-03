@@ -53,3 +53,42 @@ clickTrack.addEventListener("mousemove", dragging);
 clickTrack.addEventListener("mousedown", dragStart);
 document.addEventListener("mouseup", dragStop);
 clickTrack.addEventListener("scroll", infiniteScroll);
+
+//=========view===================================
+var productTrack = document.querySelector(".product-track");
+var productNext = document.querySelectorAll(".slider-products_arrow");
+var firstCardWitdhProducts =
+  productTrack.querySelector(".product-form").offsetWidth;
+var nextProduct = document.querySelector(".next-products_arrow");
+var prveProduct = document.querySelector(".prve-products_arrow");
+
+var isDraggingProducts = false,
+  startXProducts,
+  startScrollLeftProducts;
+
+productNext.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    productTrack.scrollLeft += btn.className.includes(
+      "slider-products_arrow prve-products_arrow"
+    )
+      ? -firstCardWitdhProducts
+      : firstCardWitdhProducts;
+  });
+});
+
+function infiniteScrollProduct() {
+  if (productTrack.scrollLeft === 0) {
+    prveProduct.classList.add("click-disable");
+  } else if (
+    Math.ceil(productTrack.scrollLeft) ===
+    productTrack.scrollWidth - productTrack.offsetWidth
+  ) {
+    nextProduct.classList.add("click-disable");
+  } else {
+    prveProduct.classList.remove("click-disable");
+    nextProduct.classList.remove("click-disable");
+  }
+}
+infiniteScrollProduct();
+
+productTrack.addEventListener("scroll", infiniteScrollProduct);

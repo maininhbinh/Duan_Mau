@@ -32,7 +32,7 @@
       <div class="nav-list d-flex">
 
         <a href="<?= APP_URL ?>">Home</a>
-        <a href="">Shop</a>
+        <a href="<?= APP_URL ?>shop">Shop</a>
 
         <div class="close">
 

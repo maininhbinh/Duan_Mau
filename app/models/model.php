@@ -42,7 +42,7 @@ class Model
         $this->sta = $this->pdo->prepare($this->sql);
         if ($options) {
             for ($i = 0; $i < count($options); $i++) {
-                $this->sta->bindParam($i + 1, $options[$i]);
+                $this->sta->bindParam($i + 1, $options[$i], PDO::PARAM_STR);
             }
         }
 

@@ -31,24 +31,6 @@ clickNext.forEach((btn) => {
   });
 });
 
-function dragStart(e) {
-  isDragging = true;
-  clickTrack.classList.add("dragging");
-
-  startX = e.pageX;
-  startScrollLeft = clickTrack.scrollLeft;
-}
-
-function dragStop() {
-  isDragging = false;
-  clickTrack.classList.remove("dragging");
-}
-
-function dragging(e) {
-  if (!isDragging) return;
-  clickTrack.scrollLeft = startScrollLeft - (e.pageX - startX);
-}
-
 function infiniteScroll() {
   if (clickTrack.scrollLeft === 0) {
     prve.classList.add("click-disable");
@@ -64,7 +46,4 @@ function infiniteScroll() {
 }
 infiniteScroll();
 
-clickTrack.addEventListener("mousemove", dragging);
-clickTrack.addEventListener("mousedown", dragStart);
-document.addEventListener("mouseup", dragStop);
 clickTrack.addEventListener("scroll", infiniteScroll);

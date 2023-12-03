@@ -55,15 +55,18 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php');
             <div class="is-scrollbar-hidden min-w-full overflow-x-auto">
                 <table class="w-full text-left">
                     <thead>
-                        <tr align="center">
+                        <tr>
                             <th class="whitespace-nowrap rounded-tl-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                                 #
                             </th>
                             <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                                Avatar
+                                Imager
                             </th>
                             <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                                 Name
+                            </th>
+                            <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                                Parent name
                             </th>
                             <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                                 Status
@@ -75,17 +78,25 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php');
                     </thead>
                     <tbody>
                         <?php foreach ($category as $key => $item) { ?>
-                            <tr class="border-y border-transparent" align="center">
+                            <tr class="border-y border-transparent">
                                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                     <?= ++$key ?>
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                     <div class="avatar flex">
-                                        <img class="rounded-full" src="<?= APP_URL ?><?= Stogare::url($item['imager']) ?>" alt="avatar" />
+                                        <?php
+                                        if (!empty($item['imager'])) { ?>
+                                            <img class="rounded-full" src="<?= APP_URL ?><?= Stogare::url($item['imager']) ?>" alt="avatar" />
+                                        <?php } else { ?>
+                                            ---
+                                        <?php } ?>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
                                     <?= $item['name'] ?>
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                                    <?= !empty($item['parent_name']) ? $item['parent_name'] : '---' ?>
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                     <div class="badge space-x-2.5 px-0 text-primary dark:text-accent-light">

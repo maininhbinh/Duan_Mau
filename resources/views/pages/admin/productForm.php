@@ -118,15 +118,22 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php'); ?>
                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="Nhập tên sản phẩm" name="name" type="text" />
                     </label>
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <label class="block">
-                            <span>Danh mục</span>
-                            <select name="id_category" class="mt-1.5 w-full" x-init="$el._x_tom = new Tom($el,{create: true,sortField: {field: 'text',direction: 'asc'}})">
-                                <option value="">---Chọn---</option>
-                                <?php foreach ($category as $key => $item) { ?>
-                                    <option value="<?= $key ?>"><?= $item ?></option>
-                                <?php } ?>
-                            </select>
-                        </label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="block">
+                                <span>Danh mục</span>
+                                <select name="id_category" class="mt-1.5 w-full" x-init="$el._x_tom = new Tom($el,{create: true,sortField: {field: 'text',direction: 'asc'}})">
+                                    <option value="">---Chọn---</option>
+                                    <?php foreach ($category as $key => $item) { ?>
+                                        <option value="<?= $key ?>"><?= $item ?></option>
+                                    <?php } ?>
+                                </select>
+
+                            </label>
+                            <label class="block">
+                                <span>discount</span>
+                                <input name="discount" class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="discount" type="number" min="1" />
+                            </label>
+                        </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <label class="block">
@@ -150,7 +157,7 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php'); ?>
                     <div>
                         <span>Images</span>
                         <div class="filepond fp-bordered fp-grid mt-1.5 [--fp-grid:2]">
-                            <!-- <label class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            <label class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                                 <input id="myFileInput" name="imager" type="file" class="pointer-events-none absolute inset-0 h-full w-full opacity-0" />
                                 <div class="flex items-center space-x-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -158,10 +165,7 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php'); ?>
                                     </svg>
                                     <span>Choose File</span>
                                 </div>
-                            </label> -->
-                            <div class="filepond fp-bordered">
-                                <input type="file" name="imager" x-init="FilePond.create($el)" multiple />
-                            </div>
+                            </label>
                         </div>
 
                         <div class="flex justify-center space-x-2 pt-4">
