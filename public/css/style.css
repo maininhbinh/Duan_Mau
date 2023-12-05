@@ -210,9 +210,27 @@ img {
   align-items: center;
   gap: 5px;
 }
+.navbar .row .icons .search {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+}
+.navbar .row .icons .search input {
+  width: 100%;
+  border-radius: 999px;
+  padding-left: 10px;
+}
+.navbar .row .icons .search button {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 999px;
+  font-size: 1.5rem;
+  background: none;
+}
 .navbar .row .icons .icon {
-  width: 50px;
-  height: 50px;
+  padding: 10px;
   color: var(--black-color);
   cursor: pointer;
   justify-content: center;
@@ -223,7 +241,7 @@ img {
   width: 100%;
   height: 100%;
   background: none;
-  font-size: 2.5rem;
+  font-size: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -372,7 +390,10 @@ img {
   align-items: end;
 }
 .header-banner .row .image img {
+  border-radius: 20px;
+  object-fit: cover;
   width: 100%;
+  height: 100%;
   right: 0;
   bottom: 0;
 }
@@ -425,6 +446,15 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .main .category .click-slider .click-list .click-track .click-slide img {
   transition: 0.3s;
@@ -1537,6 +1567,12 @@ main .products .product-list .product-track form .product-card .show-info .produ
     grid-auto-columns: calc(100% - 0px);
   }
 }
+.shop .shop-title {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 2rem;
+  font-weight: 700;
+}
 .shop .shop-products .shop-filter {
   display: flex;
   align-items: center;
@@ -1675,6 +1711,124 @@ main .products .product-list .product-track form .product-card .show-info .produ
 }
 .shop .shop-products .shop-filter .filter-category .category-list i {
   margin-left: 20px;
+}
+.shop .shop-products .shop-filter .filter-price {
+  margin-left: 40px;
+}
+.shop .shop-products .shop-filter .filter-price .price-list {
+  position: relative;
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-button_filter {
+  z-index: 0;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  font-weight: 500;
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-button_filter i {
+  margin-left: 20px;
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter {
+  z-index: 1;
+  display: none;
+  top: 50px;
+  right: 0;
+  width: 400px;
+  position: absolute;
+  border-radius: 1.5rem;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter .sort {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter .sort .border {
+  border-bottom-width: 1px;
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  margin: 20px 0 0 0;
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter .sort .row-price {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter .sort .row-price input[type=radio] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: var(--form-background);
+  /* Not removed via appearance */
+  margin: 0;
+  font: inherit;
+  width: 2rem;
+  height: 2rem;
+  border: 0.15em solid #e5e7eb;
+  border-radius: 0.2em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter .sort .row-price input[type=radio]::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+  /* Windows High Contrast Mode */
+  background-color: rgb(14, 165, 233);
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter .sort .row-price input[type=radio]:checked::before {
+  transform: scale(1);
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter .sort .row-price input[type=radio]:focus {
+  outline: max(2px, 0.15em) solid #e5e7eb;
+  outline-offset: max(2px, 0.15em);
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter .sort .row-price input[type=radio]:disabled {
+  --form-control-color: var(--form-control-disabled);
+  color: var(--form-control-disabled);
+  cursor: not-allowed;
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter .sort .row-price label {
+  margin-left: 10px;
+  font-size: 1.8rem;
+  font-weight: 100;
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter .submit-filter_price {
+  background-color: rgb(249, 250, 251);
+  padding: 1rem 2rem;
+  border-radius: 0 0 1.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter .submit-filter_price button {
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  border: 1px solid #e5e7eb;
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter .submit-filter_price .button-clear {
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  border: 1px solid #e5e7eb;
+  background-color: rgb(249, 250, 251);
+}
+.shop .shop-products .shop-filter .filter-price .price-list .price-sort_fillter .submit-filter_price .button-submit {
+  background-color: rgb(15, 23, 42);
+  color: white;
 }
 .shop .shop-products .shop-filter .filter-search .category-search_fillter {
   margin-left: 40px;
@@ -1873,7 +2027,7 @@ main .products .product-list .product-track form .product-card .show-info .produ
 }
 @media (max-width: 690px) {
   .shop .shop-products .shop-filter .filter-category .category-list .show-category {
-    right: -250px;
+    right: -210px;
   }
   .shop .shop-products .shop-filter .clear {
     display: none;

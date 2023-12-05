@@ -68,10 +68,11 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
             <div class="click-list">
                 <div class="click-track">
                     <?php foreach ($category as $item) { ?>
-                        <div class="click-slide">
+                        <a href="shop/<?= $item['id'] ?>/category" class="click-slide">
+
                             <img src="<?= APP_URL ?>public/upload/<?= $item['imager'] ?>" alt="" draggable="false">
-                            <h6><?= $item['name'] ?></h6>
-                        </div>
+                            <h6 href="shop/<?= $item['id'] ?>/category"><?= $item['name'] ?></h6>
+                        </a>
                     <?php } ?>
                 </div>
             </div>
@@ -349,6 +350,7 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
         </div>
     </div>
 </main>
+
 <script>
     function setView(id) {
         var xmlhttp = new XMLHttpRequest();

@@ -33,6 +33,7 @@ $router->get('admin/category/{id}/active', [\App\Controllers\Admin\AdminControll
 $router->get('admin/category/{id}/edit', [\App\Controllers\Admin\AdminController::class, 'categoryEdit'])->middleware('auth');
 $router->post('admin/category/add', [\App\Controllers\Admin\AdminController::class, 'categoryStore'])->middleware('auth');
 $router->post('admin/category/{id}/update', [\App\Controllers\Admin\AdminController::class, 'categoryUpdate'])->middleware('auth');
+$router->get('admin/category/{id}/remove/img', [\App\Controllers\Admin\AdminController::class, 'categoryRemoveImg'])->middleware('auth');
 
 $router->get('admin/product', [\App\Controllers\Admin\AdminController::class, 'product'])->middleware('auth');
 $router->get('admin/product/add', [\App\Controllers\Admin\AdminController::class, 'productCreate'])->middleware('auth');
@@ -42,6 +43,10 @@ $router->get('admin/product/{id}/edit', [\App\Controllers\Admin\AdminController:
 $router->get('shop', [\App\Controllers\HomeController::class, 'shop']);
 $router->post('shop', [\App\Controllers\HomeController::class, 'shop']);
 $router->get('setview/{id}', [\App\Controllers\HomeController::class, 'setView']);
+$router->get('shop/{id}/category', [\App\Controllers\HomeController::class, 'filterCategory']);
+$router->get('shop/{id}/category', [\App\Controllers\HomeController::class, 'filterCategory']);
+$router->get('shop/search', [\App\Controllers\HomeController::class, 'filterSearch']);
+$router->post('shop/{id}/comment/{id}', [\App\Controllers\HomeController::class, 'postComment'])->middleware('profile');
 
 $router->get('*', function () {
     require_once 'resources/views/pages/404.php';

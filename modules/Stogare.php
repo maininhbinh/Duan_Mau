@@ -9,10 +9,13 @@ class Stogare
 
     static public function exits($path_save)
     {
-        if (file_exists(self::$path_upload . $path_save)) {
-            return true;
+        if (empty(trim($path_save)) || $path_save == null) {
+            return false;
         }
-        return false;
+        if (!file_exists(self::$path_upload . $path_save)) {
+            return false;
+        }
+        return true;
     }
 
     static public function url($path)

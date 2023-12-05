@@ -24,7 +24,7 @@ class AdminModel extends Model
 
     public function getAllCategory()
     {
-        $sql = "SELECT * FROM $this->category";
+        $sql = "SELECT * FROM $this->category WHERE is_delete != 1";
 
         $this->setQuery($sql);
         return $this->loadAllRow();
@@ -73,6 +73,14 @@ class AdminModel extends Model
 
         $this->setQuery($sql);
         return $this->execute([0, $id]);
+    }
+
+    public function removeImgCategory($id)
+    {
+        $sql = "UPDATE $this->category SET imager = ? WHERE id = ?";
+
+        $this->setQuery($sql);
+        return $this->execute(['', $id]);
     }
 
     public function getAllProduct()

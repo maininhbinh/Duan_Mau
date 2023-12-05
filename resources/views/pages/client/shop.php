@@ -2,69 +2,107 @@
 
 use Modules\Stogare;
 
-$category = $data['category'];
+if (isset($data['category'])) {
+    $category = $data['category'];
+}
 $products = $data['products'];
+
 include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
 <div class="container">
     <main class="shop">
-        <div class="shop-title">
-            <h2>
-
-            </h2>
-        </div>
-        <div class="shop-products">
-            <div class="shop-filter">
-                <?php if (isset($_SESSION['btn']['clear']) && $_SESSION['btn']['clear'] == true) { ?>
-                    <a href="<?= APP_URL ?>shop" class="clear">
-                        <button name="clear" type="submit" class="button-clear_filter">
-                            <span>clear</span>
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                    </a>
-                <?php } ?>
-                <div class="filter-category">
-
-                    <div class="category-list">
-
-                        <button class="category-button_filter">
-                            Category
-                            <i class="fa-solid fa-arrow-down"></i>
-                        </button>
-                        <form class="show-category" action="" method="get">
-                            <div class="category">
-                                <div class="row-category">
-                                    <input type="checkbox" name="" id="all" value="">
-                                    <label for="all">All category</label>
-                                </div>
-                                <div class="border"></div>
-                                <?php foreach ($category as $item) { ?>
-                                    <div class="row-category">
-                                        <input type="checkbox" name="item[]" id="<?= $item['name'] ?>" value="<?= $item['id'] ?>" <?= isset($data['item']) && in_array($item['id'], $data['item']) ? 'checked' : '' ?>>
-                                        <label for="<?= $item['name'] ?>"><?= $item['name'] ?></label>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                            <div class="submit-filter_category">
-                                <a href="<?= APP_URL ?>shop" class="button-clear">
-                                    Clear
-                                </a>
-                                <button class="button-submit" type="submit">
-                                    Apply
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-                <div class="filter-search">
-                    <form class="category-search_fillter" action="" method="get">
-                        <input type="text" name="search" id="" placeholder="Search">
-                        <button type="submit">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </form>
-                </div>
+        <?php if (isset($data['search'])) { ?>
+            <div class="shop-title">
+                <h2>
+                    Tìm kiếm: <?= $data['keywork'] ?>
+                </h2>
             </div>
+        <?php } ?>
+        <div class="shop-products">
+            <?php if (!isset($data['search'])) { ?>
+                <div class="shop-filter">
+                    <?php if (isset($_SESSION['btn']['clear']) && $_SESSION['btn']['clear'] == true) { ?>
+                        <form action="" method="get" class="clear">
+                            <button name="clear" type="submit" class="button-clear_filter">
+                                <span>clear</span>
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </form>
+                    <?php } ?>
+                    <div class="filter-category">
+
+                        <div class="category-list">
+
+                            <button class="category-button_filter">
+                                Category
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </button>
+                            <form class="show-category" action="" method="get">
+                                <div class="category">
+                                    <div class="row-category">
+                                        <input type="checkbox" name="" id="all" value="">
+                                        <label for="all">All category</label>
+                                    </div>
+                                    <div class="border"></div>
+                                    <?php foreach ($category as $item) { ?>
+                                        <div class="row-category">
+                                            <input type="checkbox" name="item[]" id="<?= $item['name'] ?>" value="<?= $item['id'] ?>" <?= isset($data['item']) && in_array($item['id'], $data['item']) ? 'checked' : '' ?>>
+                                            <label for="<?= $item['name'] ?>"><?= $item['name'] ?></label>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                                <div class="submit-filter_category">
+                                    <form action="" method="get" class="clear">
+                                        <button name="clear" type="submit" class="button-clear_filter">
+                                            <span>clear</span>
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                    </form>
+                                    <button class="button-submit" type="submit">
+                                        Apply
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="filter-price">
+                        <div class="price-list">
+                            <button class="price-button_filter">
+                                Xắp xếp theo giá
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </button>
+                            <form class="price-sort_fillter" action="" method="get">
+                                <div class="sort">
+                                    <div class="row-price">
+                                        <input type="radio" name="order" id="all" value="">
+                                        <label for="all">All price</label>
+                                    </div>
+                                    <div class="border"></div>
+                                    <div class="row-price">
+                                        <input type="radio" name="order" id="desc" value="desc" <?= $data['order'] == 'desc' ? 'checked' : '' ?>>
+                                        <label for="desc">sắp xếp từ cao tới thấp</label>
+                                    </div>
+                                    <div class="row-price">
+                                        <input type="radio" name="order" id="asc" value="asc" <?= $data['order'] == 'asc' ? 'checked' : '' ?>>
+                                        <label for="asc">sắp xếp từ thấp tới cao</label>
+                                    </div>
+                                </div>
+                                <div class="submit-filter_price">
+                                    <form action="" method="get" class="clear">
+                                        <button name="clear" type="submit" class="button-clear_filter">
+                                            <span>clear</span>
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                    </form>
+                                    <button class="button-submit" type="submit">
+                                        Apply
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
             <div class="show-products">
                 <div class="product-list">
                     <div class="product-track">

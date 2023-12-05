@@ -9,6 +9,7 @@ class HomeModel extends model
     public $category = 'category';
     public $user = 'user';
     public $products = 'products';
+    public $comment = 'comment';
     public function getAllCategory()
     {
         $sql = "SELECT * FROM $this->category WHERE is_delete != 1";
@@ -23,6 +24,20 @@ class HomeModel extends model
 
         $this->setQuery($sql);
         return $this->loadAllRow();
+    }
+
+    public function getAllProductByIdParent($id)
+    {
+        $sql = "SELECT $this->products.* FROM $this->products join $this->category on $this->products.id_category = $this->category.id where $this->category.id = ? or $this->category.id_parent = ? and $this->category.is_delete != 1";
+        $this->setQuery($sql);
+        return $this->loadAllRow([$id, $id]);
+    }
+
+    public function getAllCategoryByIdParent($id)
+    {
+        $sql = "SELECT * FROM $this->category WHERE id_parent = ? and is_delete != 1";
+        $this->setQuery($sql);
+        return $this->loadAllRow([$id]);
     }
 
     public function getAllUser()
@@ -41,9 +56,9 @@ class HomeModel extends model
 
     public function getNewProduct()
     {
-        $sql = "SELECT * FROM $this->products ORDER BY id DESC limit 12";
+        $sql = "SELECT * FROM $this->products WHERE quantity_stock > ? ORDER BY id DESC limit 12";
         $this->setQuery($sql);
-        return $this->loadAllRow();
+        return $this->loadAllRow([1]);
     }
 
     public function getOneProduct($id)
@@ -70,7 +85,6 @@ class HomeModel extends model
 
     public function filterName($name)
     {
-
         $sql = "SELECT * FROM $this->products WHERE name like ?";
         $this->setQuery($sql);
         return $this->loadAllRow(['%' . $name . '%']);
@@ -78,14 +92,57 @@ class HomeModel extends model
 
     public function setView($id)
     {
-        $sql = "UPDATE $this->products SET view = view + 1 WHERE id = ?";
+        $sql = "UPDATE $this->products SET view = view + ? WHERE id = ?";
         $this->setQuery($sql);
-        return $this->execute([$id]);
+        return $this->execute([1, $id]);
     }
 
     public function viewMost()
     {
-        $sql = "SELECT * from $this->products ORDER BY `view` DESC LIMIT 10";
+        $sql = "SELECT * from $this->products WHERE quantity_stock > ? ORDER BY `view` DESC LIMIT 10";
+        $this->setQuery($sql);
+        return $this->loadAllRow([1]);
+    }
+
+    public function filterSortDesc()
+    {
+        $sql = "SELECT * FROM $this->products ORDER BY price desc";
+        $this->setQuery($sql);
+        return $this->loadAllRow();
+    }
+
+    public function filterSortAsc()
+    {
+        $sql = "SELECT * FROM $this->products ORDER BY price asc";
+        $this->setQuery($sql);
+        return $this->loadAllRow();
+    }
+
+    public function filterSortDescByIdParent($id)
+    {
+        $sql = "SELECT $this->products.* FROM $this->products join $this->category on $this->products.id_category = $this->category.id where $this->category.id = ? or $this->category.id_parent = ? ORDER BY price desc";
+        $this->setQuery($sql);
+        return $this->loadAllRow([$id, $id]);
+    }
+
+    public function filterSortAscByIdParent($id)
+    {
+        $sql = "SELECT $this->products.* FROM $this->products join $this->category on $this->products.id_category = $this->category.id where $this->category.id = ? or $this->category.id_parent = ? ORDER BY price asc";
+        $this->setQuery($sql);
+        return $this->loadAllRow([$id, $id]);
+    }
+
+    public function postComment($comment, $idProduct, $idUser, $date)
+    {
+        $sql = "INSERT INTO $this->comment(id_user, id_product, comment, date) values (?,?,?,?)";
+
+        $this->setQuery($sql);
+        return $this->execute([$idUser, $idProduct, $comment, $date]);
+    }
+
+    public function getCommentByProduct()
+    {
+        $sql = "SELECT $this->comment.*,  $this->user.name, $this->user.avatar  FROM $this->comment JOIN $this->user on $this->comment.id_user = $this->user.id JOIN $this->products on $this->comment.id_product = $this->products.id";
         $this->setQuery($sql);
         return $this->loadAllRow();
     }

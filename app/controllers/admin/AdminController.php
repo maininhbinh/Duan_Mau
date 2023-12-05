@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Models\Admin\AdminModel;
+use Exception;
 use Modules\Stogare;
 
 class AdminController
@@ -43,6 +44,16 @@ class AdminController
         $parent = !empty(trim($_POST['id_category'])) ? htmlspecialchars(strip_tags(trim($_POST['id_category']))) : null;
         $imager = $_FILES['imager'];
         $name_file = '';
+
+        if (!empty($this->admin->getOneCategory($parent))) {
+            $checkHasCategory = $this->admin->getOneCategory($parent);
+            if ($checkHasCategory['is_delete'] = 1) {
+                $_SESSION['message']['error'][] = 'category hiện không hoạt động';
+                $checkCategory = false;
+            }
+        } else {
+            $checkCategory = false;
+        }
 
         if (!$name) {
             $_SESSION['message']['error'][] = 'bạn không được để trống trường name';
@@ -144,6 +155,32 @@ class AdminController
         $_SESSION['message']['success'] = 'active thành công';
         header("location: " . $_SERVER['HTTP_REFERER']);
         exit;
+    }
+
+    public function categoryRemoveImg($id)
+    {
+        $check = true;
+        $category = $this->admin->getOneCategory($id);
+
+        if ($category['id_parent'] == null) {
+            $_SESSION['message']['error'][] = 'không thể xóa ảnh nếu danh mục không có danh mục cha';
+            $check = false;
+        }
+
+        if (!Stogare::exits($category['imager'])) {
+            $check = false;
+        }
+
+        if (!$check) {
+            header("location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        } else {
+            $this->admin->removeImgCategory($id);
+            Stogare::delete($category['imager']);
+            $_SESSION['message']['success'] = 'xóa ảnh thành công';
+            header("location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
     }
 
     public function product()

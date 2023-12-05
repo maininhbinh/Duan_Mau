@@ -140,13 +140,24 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php'); ?>
                                 <span>Choose File</span>
                             </div>
                         </label>
+                    </div>
+                    <div class="flex items-center">
                         <?php if (isset($category) && !empty($category['imager'])) { ?>
                             <div class="avatar h-24 w-24 ml-4">
                                 <img class="mask is-squircle" src="<?= APP_URL ?><?= Stogare::url($category['imager']) ?>" alt="avatar" />
                             </div>
                         <?php } ?>
+                        <?php if (isset($category) && !empty($category['imager']) && $category['id_parent'] != null) { ?>
+                            <a href="<?= APP_URL ?>admin/category/<?= $category['id'] ?>/remove/img" class="badge space-x-2 bg-error text-white">
+                                <span>Remove</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </a>
+                        <?php } ?>
                     </div>
                     <div class="flex justify-center space-x-2 pt-4">
+
                         <button type="submit" class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90" onclick="return confirm('<?= isset($category) ? 'bạn có chắc muốn cập nhật lại không' : 'bạn chắc chắn muốn tạo danh mục này?' ?>')">
                             <span><?= isset($category) ? 'Update' : 'Add' ?></span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

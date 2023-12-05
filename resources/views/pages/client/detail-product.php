@@ -4,6 +4,7 @@ use Modules\Stogare;
 
 $productSame = $data['productSame'];
 $product = $data['product'];
+$comments = $data['comments'];
 include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
 <div class="container detail-product">
     <div class="main-detail">
@@ -130,10 +131,92 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
         </div>
         <div class="border"></div>
         <div class="description">
-            <p>
+            <div>
                 <?= html_entity_decode($product['description']) ?>
-            </p>
+            </div>
         </div>
+    </div>
+    <div class="comments">
+        <main>
+            <div class="comment-section">
+                <form action="<?= APP_URL ?>shop/<?= $product['id'] ?>/comment/<?= $_SESSION['user']['id'] ?>" method="post" class="reply-input container">
+                    <img src="<?= APP_URL ?><?= Stogare::url($_SESSION['user']['avatar']) ?>" alt="">
+                    <div class="context">
+                        <textarea name="comment" id="comment" class="cmnt-input" placeholder="Add a comment..."></textarea>
+                        <button type="submit">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form> <!--reply input-->
+                <?php foreach ($comments as $comment) { ?>
+                    <form class="comment-wrp">
+                        <div class="comment container">
+                            <img src="<?= APP_URL ?><?= Stogare::url($comment['avatar']) ?>" alt="" class="usr-img">
+
+                            <div class="c-controls">
+                                <a class="delete"><img src="<?= APP_URL ?>public/images/comment/icon-delete.svg" alt="" class="control-icon">Delete</a>
+                                <a class="edit"><img src="<?= APP_URL ?>public/images/comment/icon-edit.svg" alt="" class="control-icon">Edit</a>
+                                <a class="reply"><img src="<?= APP_URL ?>public/images/comment/icon-reply.svg" alt="" class="control-icon">Reply</a>
+                            </div>
+                            <div class="c-user">
+                                <p class="usr-name"><?= $comment['name'] ?></p>
+                                <p class="cmnt-at"><?= $comment['date'] ?></p>
+                            </div>
+                            <div class="c-text">
+                                <p>
+                                    <?= $comment['comment'] ?>
+                                </p>
+                            </div>
+                        </div><!--comment-->
+                        <div class="replies comments-wrp">
+                        </div><!--replies-->
+                    </form>
+                <?php } ?>
+                <form class="comment-wrp">
+                    <div class="comment container">
+                        <img src="<?= APP_URL ?>/public/images/comment/avatars/image-maxblagun.webp" alt="" class="usr-img">
+
+                        <div class="c-controls">
+                            <a class="delete"><img src="<?= APP_URL ?>/public/images/comment/icon-delete.svg" alt="" class="control-icon">Delete</a>
+                            <a class="edit"><img src="<?= APP_URL ?>/public/images/comment/icon-edit.svg" alt="" class="control-icon">Edit</a>
+                            <a class="reply"><img src="<?= APP_URL ?>/public/images/comment/icon-reply.svg" alt="" class="control-icon">Reply</a>
+                        </div>
+                        <div class="c-user">
+                            <p class="usr-name">maxblagun</p>
+                            <p class="cmnt-at">2 weeks ago</p>
+                        </div>
+                        <div class="c-text">
+                            <p>
+                                Woah, your project looks awesome! How long have you been coding for? I'm still new, but think I want to dive into React as well soon. Perhaps you can give me an insight on where I can learn React? Thanks!
+                            </p>
+                        </div>
+                    </div><!--comment-->
+                    <div class="replies comments-wrp">
+
+                        <div class="comment-wrp item-comment-1">
+                            <div class="comment container this-user">
+                                <img src="<?= APP_URL ?>/public/images/comment/avatars/image-juliusomo.webp" alt="" class="usr-img">
+
+                                <div class="c-controls">
+                                    <a class="delete" onclick="removeComment('item-comment-1')"><img src="<?= APP_URL ?>/public/images/comment/icon-delete.svg" alt="" class="control-icon">Delete</a>
+                                    <a class="edit" onclick=" editComment('item-1', `If you're still new, I'd recommend focusing on the fundamentals of HTML, CSS, and JS before considering React. It's very tempting to jump ahead but lay a solid foundation first.`) "><img src="<?= APP_URL ?>/public/images/comment/icon-edit.svg" alt="" class="control-icon">Edit</a>
+                                    <a class="reply" onclick="replyComment('item-1')"><img src="<?= APP_URL ?>/public/images/comment/icon-reply.svg" alt="" class="control-icon" ">Reply</a>
+                                </div>
+                                <div class=" c-user">
+                                        <p class="usr-name">juliusomo</p>
+                                        <p class="cmnt-at">2 days ago</p>
+                                </div>
+                                <div class="c-text item-1">
+                                    <p>If you're still new, I'd recommend focusing on the fundamentals of HTML, CSS, and JS before considering React. It's very tempting to jump ahead but lay a solid foundation first.</p>
+                                </div>
+                            </div><!--comment-->
+                            <div class="replies comments-wrp">
+                            </div><!--replies-->
+                        </div>
+                    </div><!--replies-->
+                </form>
+            </div> <!--comment sectio-->
+        </main>
     </div>
     <div class="same-product">
         <div class="section-title_wapper">
@@ -277,5 +360,6 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
         </div>
     </div>
 </div>
+<script src="<?= APP_URL ?>public/js/comment.js"></script>
 <script src="<?= APP_URL ?>public/js/detail.js"></script>
 <?php include(APP_DIR . '/resources/views/layouts/client/footer.php') ?>

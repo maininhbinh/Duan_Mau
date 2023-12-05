@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <!-- ====== Custom CSS ====== -->
   <link rel="stylesheet" href="<?= APP_URL ?>public/css/style.css" />
+  <link rel="stylesheet" href="<?= APP_URL ?>public/css/comment.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Fashion Shop</title>
 </head>
@@ -45,6 +46,12 @@
       </div>
 
       <div class="icons d-flex">
+        <form action="<?= APP_URL ?>shop/search" method="get" class="search">
+          <input type="text" name="keywork" id="">
+          <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
 
         <div class="icon  d-flex">
 
