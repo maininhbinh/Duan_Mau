@@ -98,4 +98,25 @@ class AdminModel extends Model
         $this->setQuery($sql);
         return $this->execute([$id_category, $name, $imager, $description, 0, $quantity_stock, $price, $discount, 0]);
     }
+
+    public function editProduct($id)
+    {
+        $sql = "SELECT * FROM $this->products WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->loadRow([$id]);
+    }
+
+    public function updateProduct($id_category, $name, $imager, $description, $quantity_stock, $price, $discount, $id)
+    {
+        $sql = "UPDATE $this->products SET id_category = ?, name = ?, imager = ?, description = ?, quantity_stock = ?, discount = ?, price = ? WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->execute([$id_category, $name, $imager, $description, $quantity_stock, $discount, $price, $id]);
+    }
+
+    public function deleteProduct($id)
+    {
+        $sql = "UPDATE $this->products set is_delete = ? WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->execute([1, $id]);
+    }
 }

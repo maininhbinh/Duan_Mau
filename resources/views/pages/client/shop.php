@@ -108,12 +108,11 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
                     <div class="product-track">
                         <?php foreach ($products as $product) {
                             $description = html_entity_decode($product['description']);
-
                         ?>
                             <form action="" method="post">
                                 <div class="product-card">
                                     <div class="product-thumbnail">
-                                        <a href="<?= APP_URL ?>product/<?= $product['id'] ?>/detail"></a>
+                                        <a href="<?= APP_URL ?>product/<?= $item['id'] ?>/detail" onclick="setView(<?= $item['id'] ?>)"></a>
                                         <img src="<?= APP_URL ?><?= Stogare::url($product['imager']) ?>" alt="">
                                         <div class="action">
                                             <?php if (isset($product['variant'])) { ?>
@@ -225,5 +224,12 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
         </div>
     </main>
 </div>
+<script>
+    function setView(id) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "http://duan_mau.pro/365shop/setview/" + id, true);
+        xmlhttp.send();
+    }
+</script>
 <script src="<?= APP_URL ?>public/js/shop.js"></script>
 <?php include(APP_DIR . '/resources/views/layouts/client/footer.php') ?>

@@ -230,7 +230,7 @@ class AdminController
             $checkProduct = false;
         }
 
-        if ($discount < 10000) {
+        if (!empty($discount) && $discount < 10000) {
             $_SESSION['message']['error'][] = 'trường discount phải lới hơn hoặc bằng 10.000đ';
             $checkProduct = false;
         }
@@ -247,11 +247,10 @@ class AdminController
 
         if (!empty($imager['name'])) {
             $name_file = Stogare::put(self::PATH_UPLOAD_CATEGORY, $imager);
-        }
-
-        if (!$name_file) {
-            $_SESSION['message']['error'][] = 'tải tệp tin thất bại';
-            $checkProduct = false;
+            if (!$name_file) {
+                $_SESSION['message']['error'][] = 'tải tệp tin thất bại';
+                $checkProduct = false;
+            }
         }
 
         if (!$checkProduct) {
@@ -265,10 +264,83 @@ class AdminController
         }
     }
 
-    public function productEdit()
+    public function productEdit($id)
     {
         $category = array_column($this->admin->getAllCategory(), 'name', 'id');
+        $product = $this->admin->editProduct($id);
+        return view('pages.admin.productForm', compact('category', 'product'));
+    }
 
-        return view('pages.admin.productForm', compact('category'));
+    public function productUpdate($id)
+    {
+        $checkProduct = true;
+
+        $name = htmlspecialchars(strip_tags(trim($_POST['name'])));
+        $id_category = $_POST['id_category'];
+        $quantity_stock = htmlspecialchars(strip_tags(trim($_POST['quantity_stock'])));
+        $price = htmlspecialchars(strip_tags(trim($_POST['price'])));
+        $description = htmlspecialchars($_POST['description']);
+        $discount = htmlspecialchars(strip_tags(trim($_POST['discount'])));
+        $product = $this->admin->editProduct($id);
+        $old_imager = $product['imager'];
+        $imager = $_FILES['imager'];
+
+        if (empty($name) || empty($id_category) || empty($quantity_stock) || empty($price) || empty($description)) {
+            $_SESSION['message']['error'][] = 'bạn không được để trống';
+            $checkProduct = false;
+        }
+
+        if ($price < 10000) {
+            $_SESSION['message']['error'][] = 'trường price phải lới hơn hoặc bằng 10.000đ';
+            $checkProduct = false;
+        }
+
+        if ($quantity_stock < 1) {
+            $_SESSION['message']['error'][] = 'trường quantity phải lới hơn hoặc bằng 1';
+            $checkProduct = false;
+        }
+
+        if ($discount >= $price) {
+            $_SESSION['message']['error'][] = 'discount không được lớn hơn trường price';
+            $checkProduct = false;
+        }
+
+        if (!empty($discount) && $discount < 10000) {
+            $_SESSION['message']['error'][] = 'trường discount phải lới hơn hoặc bằng 10.000đ';
+            $checkProduct = false;
+        }
+
+        if (!is_numeric($price) || !is_numeric($quantity_stock) || !is_numeric($discount)) {
+            $_SESSION['message']['error'][] = 'trường price, quantity và discount phải là số';
+            $checkProduct = false;
+        }
+
+        if (!empty($imager['name'])) {
+            $name_file = Stogare::put(self::PATH_UPLOAD_CATEGORY, $imager);
+            if (!$name_file) {
+                $_SESSION['message']['error'][] = 'tải tệp tin thất bại';
+                $checkProduct = false;
+            }
+        } else {
+            $name_file = $old_imager;
+        }
+
+        if (!$checkProduct) {
+            header("location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        } else {
+            $this->admin->updateProduct($id_category, $name, $name_file, $description, $quantity_stock, $price, $discount, $id);
+            $_SESSION['message']['success'] = 'update sản phẩm thành công phầm thành công';
+            header("location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        }
+    }
+
+    public function productDelete($id)
+    {
+        $this->admin->deleteProduct($id);
+        $_SESSION['message']['success'] = 'xóa thành công';
+        header("location: " . $_SERVER['HTTP_REFERER']);
+        exit;
     }
 }

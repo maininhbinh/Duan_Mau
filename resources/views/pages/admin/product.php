@@ -72,6 +72,9 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php');
                                 Price
                             </th>
                             <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                                Discount
+                            </th>
+                            <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                                 Category
                             </th>
                             <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
@@ -101,6 +104,9 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php');
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
                                     <?= number_format($product['price'], 0, ',', '.') ?> <u>đ</u>
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                                    <?= $product['discount'] == null || $product['discount'] == 0 ?  '0' : number_format($product['discount'], 0, ',', '.') ?> <u>đ</u>
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
                                     <?= $product['category_name'] ?>

@@ -38,7 +38,9 @@ $router->get('admin/category/{id}/remove/img', [\App\Controllers\Admin\AdminCont
 $router->get('admin/product', [\App\Controllers\Admin\AdminController::class, 'product'])->middleware('auth');
 $router->get('admin/product/add', [\App\Controllers\Admin\AdminController::class, 'productCreate'])->middleware('auth');
 $router->post('admin/product/add', [\App\Controllers\Admin\AdminController::class, 'productStore'])->middleware('auth');
-$router->get('admin/product/{id}/edit', [\App\Controllers\Admin\AdminController::class, 'productCreate'])->middleware('auth');
+$router->get('admin/product/{id}/edit', [\App\Controllers\Admin\AdminController::class, 'productEdit'])->middleware('auth');
+$router->post('admin/product/{id}/update', [\App\Controllers\Admin\AdminController::class, 'productUpdate'])->middleware('auth');
+$router->get('admin/product/{id}/delete', [\App\Controllers\Admin\AdminController::class, 'productDelete'])->middleware('auth');
 
 $router->get('shop', [\App\Controllers\HomeController::class, 'shop']);
 $router->post('shop', [\App\Controllers\HomeController::class, 'shop']);
@@ -47,6 +49,8 @@ $router->get('shop/{id}/category', [\App\Controllers\HomeController::class, 'fil
 $router->get('shop/{id}/category', [\App\Controllers\HomeController::class, 'filterCategory']);
 $router->get('shop/search', [\App\Controllers\HomeController::class, 'filterSearch']);
 $router->post('shop/{id}/comment/{id}', [\App\Controllers\HomeController::class, 'postComment'])->middleware('profile');
+$router->get('comment/{id}/delete', [\App\Controllers\HomeController::class, 'deleteComment'])->middleware('profile');
+$router->post('shop/{id}/comment/{id}/reply/{id}', [\App\Controllers\HomeController::class, 'replyComment'])->middleware('auth');
 
 $router->get('*', function () {
     require_once 'resources/views/pages/404.php';

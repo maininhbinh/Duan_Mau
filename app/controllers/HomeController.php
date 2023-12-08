@@ -26,12 +26,35 @@ class HomeController
 
     public function detailProduct($id)
     {
-        $comments = $this->home->getCommentByProduct();
+        $comments = $this->home->getCommentByProduct($id);
+
+
         foreach ($comments as $key => $comment) {
             $commentTime = $comment['date'];
+            // $commentTimeReplyDate = $comment['replyDate'];
+
+            // $currentDateTimeReply = new DateTime();
+
+            // $commentDateTimeReply = new DateTime($commentTimeReplyDate);
+            // $intervalReply = $currentDateTimeReply->diff($commentDateTimeReply);
+            // $dateReply = [
+            //     'years' => $intervalReply->y,
+            //     'months' => $intervalReply->m,
+            //     'days' => $intervalReply->d,
+            //     'hours' => $intervalReply->h,
+            //     'minutes' => $intervalReply->i,
+            //     'seconds' => $intervalReply->s
+            // ];
+            // foreach ($dateReply as $i => $value) {
+            //     if ($value > 1) {
+            //         $comments[$key]['replyDate'] = $value . ' ' . $i;
+            //         break;
+            //     }
+            // }
             $currentDateTime = new DateTime();
 
             $commentDateTime = new DateTime($commentTime);
+
 
             $interval = $currentDateTime->diff($commentDateTime);
 
@@ -51,6 +74,22 @@ class HomeController
                 }
             }
         }
+
+        $count = count($comments);
+        $commentSave = $comments;
+
+        for ($i = 0; $i < count($comments); $i++) {
+            for ($j = 0; $j < count($comments); $j++) {
+                if ($comments[$j]['id_reply'] == $comments[$i]['id']) {
+                    $reply[] = $comments[$j];
+                    unset($commentSave[$j]);
+                    $commentSave[$i]['data'] = $reply;
+                }
+            }
+        }
+
+        $comments = $commentSave;
+
 
         $product = $this->home->getOneProduct($id);
         $productSame = $this->home->getProductSame($id, $product['id_category']);
@@ -164,19 +203,41 @@ class HomeController
         $check = true;
         $comment = htmlspecialchars(strip_tags(trim($_POST['comment'] ?? '')));
         $date = date('Y-m-d H:i:s');
+
         if (strlen($comment) < 10) {
-            $_SESSION['message']['error'] = 'bình luận phải hơn 10 kí tự';
+            $_SESSION['message']['error'][] = 'bình luận phải hơn 10 kí tự';
             $check = false;
         }
 
         if ($check) {
             $this->home->postComment($comment, $idProduct, $idUser, $date);
-            $_SESSION['message']['success'] = 'thay đổi mật khẩu thành công';
             header("location: " . $_SERVER['HTTP_REFERER']);
             exit;
         } else {
             header("location: " . $_SERVER['HTTP_REFERER']);
             exit;
         }
+    }
+
+    public function replyComment($idProduct, $idUser, $idReply)
+    {
+        $check = true;
+        $comment = htmlspecialchars(strip_tags(trim($_POST['comment'] ?? '')));
+        $date = date('Y-m-d H:i:s');
+
+        if (strlen($comment) < 10) {
+            $check = false;
+        }
+
+        if ($check) {
+            $this->home->replyComment($comment, $idProduct, $idUser, $idReply, $date);
+        }
+
+        return;
+    }
+
+    public function deleteComment($id)
+    {
+        $this->home->deleteComment($id);
     }
 }

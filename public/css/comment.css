@@ -144,7 +144,6 @@
   display: flex;
   gap: 10px;
   margin-top: 1rem;
-  margin-bottom: 3rem;
   min-height: 9rem;
 }
 .reply-input img {
@@ -158,6 +157,10 @@
   justify-content: center;
   padding: 1rem;
   border-radius: 999px;
+}
+
+.comment-wrp {
+  margin-top: 3rem;
 }
 
 ::-webkit-scrollbar {

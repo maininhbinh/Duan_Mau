@@ -201,11 +201,14 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
 
                                     <div class="product-status">
                                         <div class="price">
-                                            <?= number_format($item['price'], 0, ',', '.') ?><u>đ</u>
+                                            <?= number_format($item['price'] - $item['discount'], 0, ',', '.') ?><u>đ</u>
+                                            <?php if ($item['discount'] != null && $item['discount'] >= 10000) { ?>
+                                                <sup><s style="color:red;"><span style="color:red;"><?= number_format($item['price'], 0, ',', '.') ?><u>đ</u></span></s></sup>
+                                            <?php } ?>
                                         </div>
                                         <div class="rating">
                                             <i class="fa-solid fa-star"></i>
-                                            <span>4.9 (98 review)</span>
+                                            <span>4.9 (<?= $item['view'] ?> review)</span>
                                         </div>
                                     </div>
 
@@ -333,7 +336,10 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
 
                                 <div class="product-status">
                                     <div class="price">
-                                        <?= number_format($product['price'], 0, ',', '.') ?><u>đ</u>
+                                        <?= number_format($product['price'] - $product['discount'], 0, ',', '.') ?><u>đ</u>
+                                        <?php if ($product['discount'] != null && $product['discount'] >= 10000) { ?>
+                                            <sup><s style="color:red;"><span style="color:red;"><?= number_format($product['price'], 0, ',', '.') ?><u>đ</u></span></s></sup>
+                                        <?php } ?>
                                     </div>
                                     <div class="rating">
                                         <i class="fa-solid fa-star"></i>
