@@ -21,13 +21,26 @@ class AdminController
     public function dashboard()
     {
         $users = $this->admin->getAllUser();
-        return view('pages.admin.dashboard', compact('users'));
+        $statisticalProduct = $this->admin->statisticalProduct();
+        $statisticalUser = $this->admin->statisticalUser();
+        $statisticalCategory = $this->admin->statisticalCategory();
+        $statisticalView = $this->admin->statisticalView();
+        return view('pages.admin.dashboard', compact('users', 'statisticalProduct', 'statisticalUser', 'statisticalCategory', 'statisticalView'));
     }
 
     public function category()
     {
-        $category = $this->admin->getAllCategoryJoin();
-        return view('pages.admin.category', compact('category'));
+        $per_page = 10;
+        $page = 1;
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        }
+        $_SESSION['page'] = $page;
+        $start = ($page - 1) * $per_page;
+        $countPage = $this->admin->pageCategory()['countPage'];
+        $maxPage = ceil($countPage / $per_page);
+        $category = $this->admin->getPerPageCategory($start, $per_page);
+        return view('pages.admin.category', compact('category', 'maxPage'));
     }
 
     public function categoryCreate()
@@ -47,7 +60,7 @@ class AdminController
 
         if (!empty($this->admin->getOneCategory($parent))) {
             $checkHasCategory = $this->admin->getOneCategory($parent);
-            if ($checkHasCategory['is_delete'] = 1) {
+            if ($checkHasCategory['is_delete'] == 1) {
                 $_SESSION['message']['error'][] = 'category hiện không hoạt động';
                 $checkCategory = false;
             }
@@ -185,8 +198,17 @@ class AdminController
 
     public function product()
     {
-        $products = $this->admin->getAllProduct();
-        view('pages.admin.product', compact('products'));
+        $per_page = 10;
+        $page = 1;
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        }
+        $_SESSION['page'] = $page;
+        $start = ($page - 1) * $per_page;
+        $countPage = $this->admin->pageProduct()['countPage'];
+        $maxPage = ceil($countPage / $per_page);
+        $products = $this->admin->getPerPageProduct($start, $per_page);
+        view('pages.admin.product', compact('products', 'maxPage'));
     }
 
     public function productCreate()
@@ -339,6 +361,68 @@ class AdminController
     public function productDelete($id)
     {
         $this->admin->deleteProduct($id);
+        $_SESSION['message']['success'] = 'xóa thành công';
+        header("location: " . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+
+    public function user()
+    {
+        $per_page = 10;
+        $page = 1;
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        }
+        $_SESSION['page'] = $page;
+        $start = ($page - 1) * $per_page;
+        $countPage = $this->admin->pageUser()['countPage'];
+        $maxPage = ceil($countPage / $per_page);
+        $users = $this->admin->getPerPageUser($start, $per_page);
+        return view('pages.admin.user', compact('users', 'maxPage'));
+    }
+
+    public function userInActive($id)
+    {
+        $this->admin->userInActive($id);
+        $_SESSION['message']['success'] = 'chặn thành công';
+        header("location: " . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+
+    public function userActive($id)
+    {
+        $this->admin->userActive($id);
+        $_SESSION['message']['success'] = 'gỡ chặn thành công';
+        header("location: " . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+
+    public function role($id)
+    {
+        $this->admin->role($id);
+        $_SESSION['message']['success'] = 'cấp quyền thành công';
+        header("location: " . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+
+    public function comment()
+    {
+        $per_page = 10;
+        $page = 1;
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        }
+        $_SESSION['page'] = $page;
+        $start = ($page - 1) * $per_page;
+        $countPage = $this->admin->pageComment()['countPage'];
+        $maxPage = ceil($countPage / $per_page);
+        $comment = $this->admin->getPerPageComment($start, $per_page);
+        return view('pages.admin.comment', compact('comment', 'maxPage'));
+    }
+
+    public function commentDelete($id)
+    {
+        $this->admin->commentDelete($id);
         $_SESSION['message']['success'] = 'xóa thành công';
         header("location: " . $_SERVER['HTTP_REFERER']);
         exit;

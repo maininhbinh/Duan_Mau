@@ -131,7 +131,7 @@ include(APP_DIR . '/resources/views/layouts/admin/header.php'); ?>
                             </label>
                             <label class="block">
                                 <span>discount</span>
-                                <input name="discount" class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="discount" type="number" min="0" value="<?= isset($product) || $product['discount'] == null ? '0' : $product['discount'] ?>" />
+                                <input name="discount" class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent" placeholder="discount" type="number" min="0" value="<?= !isset($product) ? '0' : $product['discount'] ?>" />
                             </label>
                         </div>
 

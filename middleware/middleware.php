@@ -8,6 +8,6 @@ class middleware
         'auth' => [auth::class, 'handle'],
         'signup' => [auth::class, 'signup'],
         'signin' => [auth::class, 'signin'],
-        'profile' => [auth::class, 'profile']
+        'user' => [auth::class, 'user']
     ];
 }

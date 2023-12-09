@@ -147,7 +147,7 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
             <div class="comment-section">
                 <?php if (isset($_SESSION['user'])) { ?>
                     <form action="<?= APP_URL ?>shop/<?= $product['id'] ?>/comment/<?= $_SESSION['user']['id'] ?>" method="post" class="reply-input container">
-                        <img src="<?= APP_URL ?><?= Stogare::url($_SESSION['user']['avatar']) ?>" alt="">
+                        <img src="<?= APP_URL ?><?= !empty($_SESSION['user']['avatar']) ? Stogare::url($_SESSION['user']['avatar']) : 'public/images/avatar/user.png ' ?>" alt="">
                         <div class="context">
                             <textarea name="comment" id="comment" class="cmnt-input" placeholder="Add a comment..."></textarea>
                             <button type="submit">
@@ -166,7 +166,7 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
                 <?php foreach ($comments as $comment) { ?>
                     <div class="comment-wrp container-item-<?= $comment['id'] ?>">
                         <div class="comment container <?= isset($_SESSION['user']) && $comment['id_user'] == $_SESSION['user']['id'] ? 'this-user' : '' ?>">
-                            <img src="<?= APP_URL ?><?= Stogare::url($comment['avatar']) ?>" alt="" class="usr-img">
+                            <img src="<?= APP_URL ?><?= !empty($comment['avatar']) ? Stogare::url($comment['avatar']) : 'public/images/avatar/user.png ' ?>" alt="" class="usr-img">
 
                             <div class="c-controls">
                                 <?php if (isset($_SESSION['user']) && $comment['id_user'] == $_SESSION['user']['id']) { ?>
@@ -195,7 +195,7 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
                                 <div class="replies comments-wrp container-item-<?= $reply['id'] ?>">
                                     <div class="comment-wrp ">
                                         <div class="comment container">
-                                            <img src="<?= APP_URL ?><?= Stogare::url($reply['avatar']) ?>" alt="" class="usr-img">
+                                            <img src="<?= APP_URL ?><?= !empty($reply['avatar']) ? Stogare::url($reply['avatar']) : 'public/images/avatar/user.png ' ?>" alt="" class="usr-img">
                                             <div class="c-controls">
                                                 <?php if (isset($_SESSION['user']) && $reply['id_user'] == $_SESSION['user']['id']) { ?>
                                                     <a class="delete" onclick="removeComment('container-item-<?= $reply['id'] ?>')"><img src="<?= APP_URL ?>/public/images/comment/icon-delete.svg" alt="" class="control-icon">Delete</a>
@@ -354,7 +354,7 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
                                             </div>
                                             <div class="rating">
                                                 <i class="fa-solid fa-star"></i>
-                                                <span>4.9 (98 review)</span>
+                                                <span>4.9 (<?= $item['view'] ?> review)</span>
                                             </div>
                                         </div>
                                     </div>

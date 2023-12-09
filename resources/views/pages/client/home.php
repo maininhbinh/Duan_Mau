@@ -343,7 +343,7 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
                                     </div>
                                     <div class="rating">
                                         <i class="fa-solid fa-star"></i>
-                                        <span>4.9 (98 review)</span>
+                                        <span>4.9 (<?= $product['view'] ?> review)</span>
                                     </div>
                                 </div>
 

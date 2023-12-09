@@ -12,9 +12,15 @@ class auth
         }
     }
 
-    public function profile()
+    public function user()
     {
         if (!isset($_SESSION['user'])) {
+            header('location: ' . APP_URL);
+            exit;
+        }
+
+        if ($_SESSION['user']['is_delete'] == 1) {
+            unset($_SESSION['user']);
             header('location: ' . APP_URL);
             exit;
         }

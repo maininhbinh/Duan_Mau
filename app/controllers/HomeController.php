@@ -203,12 +203,6 @@ class HomeController
         $check = true;
         $comment = htmlspecialchars(strip_tags(trim($_POST['comment'] ?? '')));
         $date = date('Y-m-d H:i:s');
-
-        if (strlen($comment) < 10) {
-            $_SESSION['message']['error'][] = 'bình luận phải hơn 10 kí tự';
-            $check = false;
-        }
-
         if ($check) {
             $this->home->postComment($comment, $idProduct, $idUser, $date);
             header("location: " . $_SERVER['HTTP_REFERER']);

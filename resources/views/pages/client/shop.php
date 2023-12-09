@@ -112,7 +112,7 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
                             <form action="" method="post">
                                 <div class="product-card">
                                     <div class="product-thumbnail">
-                                        <a href="<?= APP_URL ?>product/<?= $item['id'] ?>/detail" onclick="setView(<?= $item['id'] ?>)"></a>
+                                        <a href="<?= APP_URL ?>product/<?= $product['id'] ?>/detail" onclick="setView(<?= $product['id'] ?>)"></a>
                                         <img src="<?= APP_URL ?><?= Stogare::url($product['imager']) ?>" alt="">
                                         <div class="action">
                                             <?php if (isset($product['variant'])) { ?>

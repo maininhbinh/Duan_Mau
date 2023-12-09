@@ -20,11 +20,11 @@ $router->post('signup', [\App\Controllers\Client\ClientController::class, 'setSi
 $router->post('signin', [\App\Controllers\Client\ClientController::class, 'setSignin']);
 $router->get('logout', [\App\Controllers\Client\ClientController::class, 'logOut']);
 
-$router->get('profile/{id}', [\App\Controllers\Client\ClientController::class, 'profile'])->middleware('profile');
-$router->post('profile/{id}', [\App\Controllers\Client\ClientController::class, 'updateProfile'])->middleware('profile');
-$router->post('profile/{id}/upload', [\App\Controllers\Client\ClientController::class, 'uploadImage'])->middleware('profile');
-$router->get('profile/{id}/deleteimg', [\App\Controllers\Client\ClientController::class, 'deleteImage'])->middleware('profile');
-$router->post('profile/{id}/password', [\App\Controllers\Client\ClientController::class, 'changePassword'])->middleware('profile');
+$router->get('profile/{id}', [\App\Controllers\Client\ClientController::class, 'profile'])->middleware('user');
+$router->post('profile/{id}', [\App\Controllers\Client\ClientController::class, 'updateProfile'])->middleware('user');
+$router->post('profile/{id}/upload', [\App\Controllers\Client\ClientController::class, 'uploadImage'])->middleware('user');
+$router->get('profile/{id}/deleteimg', [\App\Controllers\Client\ClientController::class, 'deleteImage'])->middleware('user');
+$router->post('profile/{id}/password', [\App\Controllers\Client\ClientController::class, 'changePassword'])->middleware('user');
 
 $router->get('admin/category', [\App\Controllers\Admin\AdminController::class, 'category'])->middleware('auth');
 $router->get('admin/category/add', [\App\Controllers\Admin\AdminController::class, 'categoryCreate'])->middleware('auth');
@@ -42,14 +42,22 @@ $router->get('admin/product/{id}/edit', [\App\Controllers\Admin\AdminController:
 $router->post('admin/product/{id}/update', [\App\Controllers\Admin\AdminController::class, 'productUpdate'])->middleware('auth');
 $router->get('admin/product/{id}/delete', [\App\Controllers\Admin\AdminController::class, 'productDelete'])->middleware('auth');
 
+$router->get('admin/user', [\App\Controllers\Admin\AdminController::class, 'user'])->middleware('auth');
+$router->get('admin/user/{id}/in_active', [\App\Controllers\Admin\AdminController::class, 'userInActive'])->middleware('auth');
+$router->get('admin/user/{id}/active', [\App\Controllers\Admin\AdminController::class, 'userActive'])->middleware('auth');
+$router->get('admin/{id}/role', [\App\Controllers\Admin\AdminController::class, 'role'])->middleware('auth');
+
+$router->get('admin/comment', [\App\Controllers\Admin\AdminController::class, 'comment'])->middleware('auth');
+$router->get('admin/comment/{id}/delete', [\App\Controllers\Admin\AdminController::class, 'commentDelete'])->middleware('auth');
+
 $router->get('shop', [\App\Controllers\HomeController::class, 'shop']);
 $router->post('shop', [\App\Controllers\HomeController::class, 'shop']);
 $router->get('setview/{id}', [\App\Controllers\HomeController::class, 'setView']);
 $router->get('shop/{id}/category', [\App\Controllers\HomeController::class, 'filterCategory']);
 $router->get('shop/{id}/category', [\App\Controllers\HomeController::class, 'filterCategory']);
 $router->get('shop/search', [\App\Controllers\HomeController::class, 'filterSearch']);
-$router->post('shop/{id}/comment/{id}', [\App\Controllers\HomeController::class, 'postComment'])->middleware('profile');
-$router->get('comment/{id}/delete', [\App\Controllers\HomeController::class, 'deleteComment'])->middleware('profile');
+$router->post('shop/{id}/comment/{id}', [\App\Controllers\HomeController::class, 'postComment'])->middleware('user');
+$router->get('comment/{id}/delete', [\App\Controllers\HomeController::class, 'deleteComment'])->middleware('user');
 $router->post('shop/{id}/comment/{id}/reply/{id}', [\App\Controllers\HomeController::class, 'replyComment'])->middleware('auth');
 
 $router->get('*', function () {

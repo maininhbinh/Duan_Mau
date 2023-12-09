@@ -92,6 +92,11 @@ class ClientController
             $check = false;
         }
 
+        if ($data['is_delete'] == 1) {
+            $_SESSION['message']['error'][] = 'tài khoản đã bị khóa';
+            $check = false;
+        }
+
         if (!$check) {
             header('location: signin');
             exit();
@@ -102,7 +107,12 @@ class ClientController
             $_SESSION['user']['avatar'] = $data['avatar'];
             $_SESSION['user']['address'] = $data['address'];
             $_SESSION['user']['id_role'] = $data['id_role'];
+            $_SESSION['user']['is_delete'] = $data['is_delete'];
 
+            if ($_SESSION['user']['id_role'] == 1) {
+                header('location: admin/dashboard');
+                exit;
+            }
             header('location: signin');
             exit();
         }

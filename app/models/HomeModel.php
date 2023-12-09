@@ -10,6 +10,7 @@ class HomeModel extends model
     public $user = 'user';
     public $products = 'products';
     public $comment = 'comment';
+
     public function getAllCategory()
     {
         $sql = "SELECT * FROM $this->category WHERE is_delete != 1";
@@ -78,7 +79,7 @@ class HomeModel extends model
     public function filterCategory($values)
     {
         $placeholders = implode(',', array_fill(0, count($values), '?'));
-        $sql = "SELECT * FROM $this->products WHERE id_category and is_delete != 1 in ($placeholders)";
+        $sql = "SELECT * FROM $this->products WHERE is_delete != 1 and id_category in ($placeholders)";
         $this->setQuery($sql);
         return $this->loadAllRow($values);
     }

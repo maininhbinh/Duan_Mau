@@ -9,6 +9,7 @@ class AdminModel extends Model
     public $user = 'user';
     public $category = 'category';
     public $products = 'products';
+    public $comment = 'comment';
 
     public function getPdo()
     {
@@ -18,6 +19,13 @@ class AdminModel extends Model
     public function getAllUser()
     {
         $sql = "SELECT * FROM $this->user WHERE id_role != 1";
+        $this->setQuery($sql);
+        return $this->loadAllRow();
+    }
+
+    public function getPerPageUser($start, $perPage)
+    {
+        $sql = "SELECT * FROM $this->user WHERE id_role != 1 LIMIT $start, $perPage";
         $this->setQuery($sql);
         return $this->loadAllRow();
     }
@@ -33,6 +41,14 @@ class AdminModel extends Model
     public function getAllCategoryJoin()
     {
         $sql = "SELECT children.*, parent.name as parent_name FROM $this->category as children LEFT JOIN $this->category as parent ON children.id_parent = parent.id";
+
+        $this->setQuery($sql);
+        return $this->loadAllRow();
+    }
+
+    public function getPerPageCategory($start, $perPage)
+    {
+        $sql = "SELECT children.*, parent.name as parent_name FROM $this->category as children LEFT JOIN $this->category as parent ON children.id_parent = parent.id LIMIT $start, $perPage";
 
         $this->setQuery($sql);
         return $this->loadAllRow();
@@ -92,6 +108,15 @@ class AdminModel extends Model
         return $this->loadAllRow();
     }
 
+    public function getPerPageProduct($start, $perPage)
+    {
+        $sql = "SELECT $this->products.*, $this->category.name as category_name FROM $this->products JOIN $this->category ON $this->products.id_category = $this->category.id WHERE $this->products.is_delete != 1 LIMIT $start, $perPage";
+
+        $this->setQuery($sql);
+
+        return $this->loadAllRow();
+    }
+
     public function addProduct($id_category, $name, $imager, $description, $quantity_stock, $price, $discount)
     {
         $sql = "INSERT INTO $this->products(id_category, name, imager, description, view, quantity_stock, price, discount, is_delete) values (?,?,?,?,?,?,?,?,?)";
@@ -118,5 +143,95 @@ class AdminModel extends Model
         $sql = "UPDATE $this->products set is_delete = ? WHERE id = ?";
         $this->setQuery($sql);
         return $this->execute([1, $id]);
+    }
+
+    public function userInActive($id)
+    {
+        $sql = "UPDATE $this->user SET is_delete = ? WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->execute([1, $id]);
+    }
+    public function userActive($id)
+    {
+        $sql = "UPDATE $this->user SET is_delete = ? WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->execute([0, $id]);
+    }
+
+    public function statisticalProduct()
+    {
+        $sql = "SELECT count(id) as product FROM $this->products where is_delete != 1";
+        $this->setQuery($sql);
+        return $this->loadRow();
+    }
+    public function statisticalUser()
+    {
+        $sql = "SELECT count(id) as user FROM $this->user where is_delete != 1";
+        $this->setQuery($sql);
+        return $this->loadRow();
+    }
+    public function statisticalCategory()
+    {
+        $sql = "SELECT count(id) as category FROM $this->category where is_delete != 1";
+        $this->setQuery($sql);
+        return $this->loadRow();
+    }
+    public function statisticalView()
+    {
+        $sql = "SELECT SUM(view) as view FROM $this->products";
+        $this->setQuery($sql);
+        return $this->loadRow();
+    }
+
+    public function role($id)
+    {
+        $sql = "UPDATE $this->user SET id_role = ? where id = ?";
+        $this->setQuery($sql);
+        return $this->execute([1, $id]);
+    }
+
+    public function getAllcomment()
+    {
+        $sql = "SELECT $this->comment.*, $this->user.name as nameUser, $this->products.name as nameProduct FROM $this->comment join $this->user on $this->comment.id_user = $this->user.id and $this->user.id_role != 1 join $this->products on $this->comment.id_product = $this->products.id";
+        $this->setQuery($sql);
+        return $this->loadAllRow();
+    }
+    public function getPerPageComment($start, $perPage)
+    {
+        $sql = "SELECT $this->comment.*, $this->user.name as nameUser, $this->products.name as nameProduct FROM $this->comment join $this->user on $this->comment.id_user = $this->user.id and $this->user.id_role != 1 join $this->products on $this->comment.id_product = $this->products.id LIMIT $start, $perPage ";
+        $this->setQuery($sql);
+        return $this->loadAllRow();
+    }
+
+    public function commentDelete($id)
+    {
+        $sql = "DELETE FROM $this->comment WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->loadAllRow([$id]);
+    }
+
+    public function pageProduct()
+    {
+        $sql = "SELECT count(id) as countPage FROM $this->products WHERE is_delete != 1";
+        $this->setQuery($sql);
+        return $this->loadRow();
+    }
+    public function pageCategory()
+    {
+        $sql = "SELECT count(id) as countPage FROM $this->category WHERE is_delete != 1";
+        $this->setQuery($sql);
+        return $this->loadRow();
+    }
+    public function pageUser()
+    {
+        $sql = "SELECT count(id) as countPage FROM $this->user WHERE is_delete != 1";
+        $this->setQuery($sql);
+        return $this->loadRow();
+    }
+    public function pageComment()
+    {
+        $sql = "SELECT count(id) as countPage FROM $this->comment";
+        $this->setQuery($sql);
+        return $this->loadRow();
     }
 }
