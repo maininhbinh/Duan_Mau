@@ -6,8 +6,7 @@ class middleware
 {
     const MAP = [
         'auth' => [auth::class, 'handle'],
-        'signup' => [auth::class, 'signup'],
-        'signin' => [auth::class, 'signin'],
+        'is_user' => [auth::class, 'is_user'],
         'user' => [auth::class, 'user']
     ];
 }

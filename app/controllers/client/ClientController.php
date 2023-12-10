@@ -5,6 +5,9 @@ namespace App\Controllers\Client;
 use App\Models\Client\UserModel;
 use Modules\core;
 use Modules\Stogare;
+use Modules\PHPMailer\Src\PHPMailer;
+use Modules\PHPMailer\Src\Exception;
+use Modules\PHPMailer\Src\SMTP;
 
 class ClientController
 {
@@ -264,5 +267,145 @@ class ClientController
             header("location: " . $_SERVER['HTTP_REFERER']);
             exit;
         }
+    }
+
+    public function forgotPassword()
+    {
+        return view('pages.client.forgotPassword');
+    }
+
+    public function otp()
+    {
+
+        $check = true;
+        $email = htmlspecialchars(strip_tags(trim($_POST['email'] ?? '')));
+
+        $data = $this->user->checkEmail($email);
+
+
+
+
+        if (empty($email)) {
+            $_SESSION['message']['error'][] = 'không được để trống';
+            $check = false;
+        }
+
+
+        if (preg_match("/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/", $email) !== 1) {
+            $_SESSION['message']['error'][] = 'email sai định dạng';
+            $check = false;
+        }
+
+
+        if (!$data) {
+            $_SESSION['message']['error'][] = 'không tồn tại email này';
+            $check = false;
+        } else {
+            $_SESSION['MAIL']['OTP'] = str_pad(rand(0, 999), 4, '0', STR_PAD_LEFT);
+            $_SESSION['MAIL']['NAME'] = $email;
+            $_SESSION['MAIL']['USER'] = $data['name'];
+
+            $mail = new PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = MAIL_HOST;
+            $mail->SMTPAuth = true;
+            $mail->Username = MAIL_NAME;
+            $mail->Password = MAIL_PASSWORD;
+            $mail->SMTPSecure = MAIL_SECURE;
+            $mail->Port = 465;
+
+            $mail->setFrom(MAIL_NAME, 'admin');
+            $mail->addAddress($email, $data['name']);
+            $mail->Subject = '[365shop] OTP';
+            $mail->Body = "Mã OTP của bạn là: " . $_SESSION['MAIL']['OTP'];
+
+            if (!$mail->send()) {
+                $_SESSION['message']['error'][] = 'Gửi email thất bại';
+                $check = false;
+            }
+        }
+
+
+        if (!$check) {
+            header("location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        } else {
+            return view('pages.client.otp');
+            exit;
+        }
+    }
+
+    public function checkOtp()
+    {
+        $check = true;
+        $otp = $_SESSION['MAIL']['OTP'];
+
+        if ($_SESSION['MAIL']['OTP'] != $otp) {
+            $_SESSION['message']['error'][] = 'mã otp không chính xác';
+            $check = false;
+        } else {
+            $email = $_SESSION['MAIL']['NAME'];
+            $user = $_SESSION['MAIL']['NAME'];
+            $id = $this->user->checkEmail($email)['id'];
+            $newPassword = $this->generateRandomString(15);
+            $password = password_hash($newPassword, PASSWORD_DEFAULT);
+
+            $this->user->updatePassword($password, $id);
+
+            $mail = new PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = MAIL_HOST;
+            $mail->SMTPAuth = true;
+            $mail->Username = MAIL_NAME;
+            $mail->Password = MAIL_PASSWORD;
+            $mail->SMTPSecure = MAIL_SECURE;
+            $mail->Port = 465;
+
+            $mail->setFrom(MAIL_NAME, 'admin');
+            $mail->addAddress($email, $user);
+            $mail->Subject = '[365shop] mật khẩu mới';
+            $mail->Body = "Mật khẩu mới của bạn là: $newPassword";
+
+            if (!$mail->send()) {
+                $_SESSION['message']['error'][] = 'Gửi email thất bại';
+                $check = false;
+            }
+        }
+
+        if (!$check) {
+            header("location: forgotpassword");
+            exit;
+        } else {
+
+            $_SESSION['message']['success'] = 'mật khẩu mới đã được gửi về email của bạn';
+            header("location: forgotpassword");
+            exit;
+        }
+    }
+
+    public function generateRandomString($length = 10)
+    {
+        $lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+        $uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $numericChars = '0123456789';
+
+        $allChars = $lowercaseChars . $uppercaseChars . $numericChars;
+
+        $randomString = '';
+
+        // Chọn ít nhất một ký tự từ mỗi loại
+        $randomString .= $lowercaseChars[rand(0, strlen($lowercaseChars) - 1)];
+        $randomString .= $uppercaseChars[rand(0, strlen($uppercaseChars) - 1)];
+        $randomString .= $numericChars[rand(0, strlen($numericChars) - 1)];
+
+        // Hoàn thành chuỗi với các ký tự ngẫu nhiên từ tất cả các loại
+        for ($i = 0; $i < $length - 3; $i++) {
+            $randomString .= $allChars[rand(0, strlen($allChars) - 1)];
+        }
+
+        // Trộn ngẫu nhiên chuỗi
+        $randomString = str_shuffle($randomString);
+
+        return $randomString;
     }
 }

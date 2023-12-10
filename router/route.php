@@ -14,11 +14,14 @@ $router->get('product/{id}/detail', [\App\Controllers\HomeController::class, 'de
 
 $router->get('admin/dashboard', [\App\Controllers\Admin\AdminController::class, 'dashboard'])->middleware('auth');
 
-$router->get('signup', [\App\Controllers\Client\ClientController::class, 'signup'])->middleware('signup');
-$router->get('signin', [\App\Controllers\Client\ClientController::class, 'signin'])->middleware('signin');
+$router->get('signup', [\App\Controllers\Client\ClientController::class, 'signup'])->middleware('is_user');
+$router->get('signin', [\App\Controllers\Client\ClientController::class, 'signin'])->middleware('is_user');
 $router->post('signup', [\App\Controllers\Client\ClientController::class, 'setSignup']);
 $router->post('signin', [\App\Controllers\Client\ClientController::class, 'setSignin']);
 $router->get('logout', [\App\Controllers\Client\ClientController::class, 'logOut']);
+$router->get('forgotpassword', [\App\Controllers\Client\ClientController::class, 'forgotPassword'])->middleware('is_user');
+$router->post('otp', [\App\Controllers\Client\ClientController::class, 'otp'])->middleware('is_user');
+$router->post('checkotp', [\App\Controllers\Client\ClientController::class, 'checkOtp'])->middleware('is_user');
 
 $router->get('profile/{id}', [\App\Controllers\Client\ClientController::class, 'profile'])->middleware('user');
 $router->post('profile/{id}', [\App\Controllers\Client\ClientController::class, 'updateProfile'])->middleware('user');

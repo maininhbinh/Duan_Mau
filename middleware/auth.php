@@ -26,17 +26,7 @@ class auth
         }
     }
 
-    public function signup()
-    {
-        if (isset($_SESSION['user'])) {
-            header('location: ' . APP_URL);
-            exit;
-        } else {
-            return true;
-        }
-    }
-
-    public function signin()
+    public function is_user()
     {
         if (isset($_SESSION['user'])) {
             header('location: ' . APP_URL);

@@ -10,21 +10,12 @@ class my_autoload
 
     private function autoload($class)
     {
-
         //lấy ra giá trị được sét trước đó
         $path = App::getConfig()['autoload'];
 
-        //cắt chuỗi namespase
-        $parts = explode('\\', $class);
-
-        //lấy ra giá trị cuối trong mảng
-        $className = end($parts);
-
-        //cắt chuỗi trùng nhau
-        $pathName = str_replace($className, '', $class);
 
         //đường dẫn tới file được namespase
-        $filePath = $path . '\\' . $pathName . $className . '.php';
+        $filePath = $class . '.php';
 
         //nếu có file đó thì tiến hành require_one
         if (file_exists($filePath)) {
