@@ -20,12 +20,25 @@ class AdminController
 
     public function dashboard()
     {
+        $thongke = $this->admin->statistical();
+        $labels = [];
+        $percent = [];
+        $colorPercent = ["#4ade80", "#f43f5e", "#a855f7", "#ffcce0","#4f5665", "#8c71db"];
+        foreach($thongke as $item){
+            $labels[] = $item['name'];
+            $percent[] = ceil($item['percent']);
+
+            $randomIndex = rand(0, count($colorPercent) - 1);
+
+            $randomColors[] = $colorPercent[$randomIndex];
+        }
+        $sumProduct = $this->admin->sumProduct();
         $users = $this->admin->getAllUser();
         $statisticalProduct = $this->admin->statisticalProduct();
         $statisticalUser = $this->admin->statisticalUser();
         $statisticalCategory = $this->admin->statisticalCategory();
         $statisticalView = $this->admin->statisticalView();
-        return view('pages.admin.dashboard', compact('users', 'statisticalProduct', 'statisticalUser', 'statisticalCategory', 'statisticalView'));
+        return view('pages.admin.dashboard', compact('users', 'statisticalProduct', 'statisticalUser', 'statisticalCategory', 'statisticalView', 'labels', 'percent', 'randomColors', 'sumProduct'));
     }
 
     public function category()
@@ -64,8 +77,6 @@ class AdminController
                 $_SESSION['message']['error'][] = 'category hiện không hoạt động';
                 $checkCategory = false;
             }
-        } else {
-            $checkCategory = false;
         }
 
         if (!$name) {
@@ -85,6 +96,8 @@ class AdminController
                 $checkCategory = false;
             }
         }
+
+
 
         if (!$checkCategory) {
             header("location: " . $_SERVER['HTTP_REFERER']);
@@ -227,8 +240,7 @@ class AdminController
         $quantity_stock = htmlspecialchars(strip_tags(trim($_POST['quantity_stock'])));
         $price = htmlspecialchars(strip_tags(trim($_POST['price'])));
         $description = htmlspecialchars($_POST['description']);
-        $discount = htmlspecialchars(strip_tags(trim($_POST['discount'])));
-
+        $discount = htmlspecialchars(strip_tags(trim($_POST['discount'] == '' ? 0 : $_POST['discount'])));
 
         $imager = $_FILES['imager'];
 
@@ -257,7 +269,7 @@ class AdminController
             $checkProduct = false;
         }
 
-        if (!is_numeric($price) || !is_numeric($quantity_stock) || !is_numeric($discount)) {
+        if (!is_numeric($price) || !is_numeric($quantity_stock)) {
             $_SESSION['message']['error'][] = 'trường price, quantity và discount phải là số';
             $checkProduct = false;
         }
@@ -302,7 +314,7 @@ class AdminController
         $quantity_stock = htmlspecialchars(strip_tags(trim($_POST['quantity_stock'])));
         $price = htmlspecialchars(strip_tags(trim($_POST['price'])));
         $description = htmlspecialchars($_POST['description']);
-        $discount = htmlspecialchars(strip_tags(trim($_POST['discount'])));
+        $discount = htmlspecialchars(strip_tags(trim($_POST['discount'] == '' ? 0 : $_POST['discount'])));
         $product = $this->admin->editProduct($id);
         $old_imager = $product['imager'];
         $imager = $_FILES['imager'];
@@ -332,7 +344,7 @@ class AdminController
             $checkProduct = false;
         }
 
-        if (!is_numeric($price) || !is_numeric($quantity_stock) || !is_numeric($discount)) {
+        if (!is_numeric($price) || !is_numeric($quantity_stock)) {
             $_SESSION['message']['error'][] = 'trường price, quantity và discount phải là số';
             $checkProduct = false;
         }
@@ -426,5 +438,9 @@ class AdminController
         $_SESSION['message']['success'] = 'xóa thành công';
         header("location: " . $_SERVER['HTTP_REFERER']);
         exit;
+    }
+
+    public function statistical(){
+        
     }
 }

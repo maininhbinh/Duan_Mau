@@ -196,7 +196,7 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
 
                                         <div class="product-content">
                                             <h2>
-                                                <?= $product['name'] ?>
+                                                <a href="<?= APP_URL ?>product/<?= $product['id'] ?>/detail"><?= $product['name'] ?></a>
                                             </h2>
                                             <p>
 

@@ -117,9 +117,14 @@ if (isset($data['users'])) {
                         Phân tích
                     </h2>
                 </div>
-
                 <div>
-                    <div x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.travelAnalytics); $el._x_chart.render() });"></div>
+                    <div x-init=" pages.charts.travelAnalytics.total = <?= $data['sumProduct']['sumProduct'] ?>; 
+                        pages.charts.travelAnalytics.colors = [<?php foreach($data['randomColors'] as $item){ ?>'<?= $item?>', <?php }?>];
+                        pages.charts.travelAnalytics.series = [<?php foreach($data['percent'] as $item){ ?>'<?= $item?>', <?php }?>];
+                        pages.charts.travelAnalytics.labels = [<?php foreach($data['labels'] as $item){ ?>'<?= $item?>', <?php }?>];
+                    
+                   
+                    $nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.travelAnalytics); $el._x_chart.render() });"></div>
                 </div>
                 <div class="mx-auto mt-3 max-w-xs px-4 text-center text-xs+ sm:px-5">
                     <p>Thống kê danh sách</p>
@@ -387,4 +392,6 @@ if (isset($data['users'])) {
         </div>
     </div>
 </main>
+<script>
+</script>
 <?php include(APP_DIR . '/resources/views/layouts/admin/footer.php') ?>

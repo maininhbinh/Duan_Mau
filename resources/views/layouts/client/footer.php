@@ -4,12 +4,8 @@
       <div class="row container">
         <div class="col">
           <div class="logo d-flex">
-            <img src="<?= APP_URL ?>public/images/logo.svg" alt="logo" />
+            <img class="h-12 w-12" src="<?= APP_URL ?>/public/images/admin/app-logo.svg" alt="logo" /> 365shop
           </div>
-          <p>
-            Lorem ispum is a placeholder text <br />
-            commonly used as a free text.
-          </p>
           <div class="icons d-flex">
             <div class="icon d-flex">
               <i class="bx bxl-facebook"></i>
@@ -19,13 +15,13 @@
             <div class="icon d-flex"><i class="bx bxl-youtube"></i></div>
           </div>
           <p class="color">
-            Copyrights 2021 <br />
-            @Iamabdulqadeer01
+            10/12/2023 <br />
+            Mai Ninh Bình
           </p>
         </div>
         <div class="col">
           <div>
-            <h4>Product</h4>
+            <h4>Sản phẩm</h4>
             <a href="">Download</a>
             <a href="">Pricing</a>
             <a href="">Locations</a>
@@ -34,7 +30,7 @@
             <a href="">Blog</a>
           </div>
           <div>
-            <h4>Category</h4>
+            <h4>Danh mục</h4>
             <a href="">Men</a>
             <a href="">Women</a>
             <a href="">Kids</a>
@@ -53,15 +49,15 @@
             <h4>Contact Us</h4>
             <div class="d-flex">
               <div class="icon"><i class="bx bxs-map"></i></div>
-              <span>123 Street Trafford, London, UK</span>
+              <span>số 1, Trịnh Văn Bô, Nam Từ Liêm, Hà Nội</span>
             </div>
             <div class="d-flex">
               <div class="icon"><i class="bx bxs-envelope"></i></div>
-              <span>info@sitename.com</span>
+              <span>ninhhbinhh@gmail.com</span>
             </div>
             <div class="d-flex">
               <div class="icon"><i class="bx bxs-phone"></i></div>
-              <span>+456 789 789 001</span>
+              <span>+00000000</span>
             </div>
           </div>
         </div>

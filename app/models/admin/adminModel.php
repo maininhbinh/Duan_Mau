@@ -48,7 +48,7 @@ class AdminModel extends Model
 
     public function getPerPageCategory($start, $perPage)
     {
-        $sql = "SELECT children.*, parent.name as parent_name FROM $this->category as children LEFT JOIN $this->category as parent ON children.id_parent = parent.id LIMIT $start, $perPage";
+        $sql = "SELECT children.*, parent.name as parent_name FROM $this->category as children LEFT JOIN $this->category as parent ON children.id_parent = parent.id where children.is_delete != 1 LIMIT $start, $perPage";
 
         $this->setQuery($sql);
         return $this->loadAllRow();
@@ -216,6 +216,12 @@ class AdminModel extends Model
         $this->setQuery($sql);
         return $this->loadRow();
     }
+    public function sumProduct()
+    {
+        $sql = "SELECT SUM(quantity_stock) as sumProduct FROM $this->products WHERE is_delete != 1";
+        $this->setQuery($sql);
+        return $this->loadRow();
+    }
     public function pageCategory()
     {
         $sql = "SELECT count(id) as countPage FROM $this->category WHERE is_delete != 1";
@@ -233,5 +239,19 @@ class AdminModel extends Model
         $sql = "SELECT count(id) as countPage FROM $this->comment";
         $this->setQuery($sql);
         return $this->loadRow();
+    }
+
+    public function statistical(){
+        $sql = "SELECT 
+        category.name AS name, 
+        (SUM(products.quantity_stock) / (SELECT SUM(quantity_stock) FROM products)) * 100 AS percent 
+      FROM 
+        products
+      JOIN 
+        category ON products.id_category = category.id WHERE products.is_delete != 1
+      GROUP BY 
+        category.name";
+        $this->setQuery($sql);
+        return $this->loadAllRow();
     }
 }

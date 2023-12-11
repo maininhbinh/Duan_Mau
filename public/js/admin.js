@@ -22333,12 +22333,13 @@
               },
             },
             travelAnalytics: {
-              colors: ["#4ade80", "#f43f5e", "#a855f7", "#ffcce0"],
-              series: [100, 100, 100, 100],
+              colors: [],
+              series: [],
+              total: 0,
               chart: { height: 250, type: "radialBar" },
               plotOptions: {
                 radialBar: {
-                  hollow: { margin: 10, size: "35%" },
+                  hollow: { margin: 10, size: "10%" },
                   track: { margin: 10 },
                   dataLabels: {
                     name: { fontSize: "22px" },
@@ -22347,9 +22348,7 @@
                       show: !0,
                       label: "Tổng",
                       formatter: function (e) {
-                        return e.config.series.reduce(function (e, t) {
-                          return e + t;
-                        });
+                        return e.config.total
                       },
                     },
                   },
@@ -22357,7 +22356,7 @@
               },
               grid: { padding: { top: -20, bottom: -20, right: 0, left: 0 } },
               stroke: { lineCap: "round" },
-              labels: ["Sản phẩm", "Danh mục", "Người dùng", "Lượt truy cập"],
+              labels: [],
             },
             travelExpense: {
               colors: ["#0EA5E9"],

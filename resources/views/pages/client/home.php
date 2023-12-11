@@ -192,7 +192,7 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
 
                                     <div class="product-content">
                                         <h2>
-                                            <?= $item['name'] ?>
+                                            <a href="<?= APP_URL ?>product/<?= $item['id'] ?>/detail"><?= $item['name'] ?></a>
                                         </h2>
                                         <p>
 
@@ -327,7 +327,7 @@ include(APP_DIR . '/resources/views/layouts/client/header.php') ?>
 
                                 <div class="product-content">
                                     <h2>
-                                        <?= $product['name'] ?>
+                                        <a href="<?= APP_URL ?>product/<?= $item['id'] ?>/detail"><?= $item['name'] ?></a>
                                     </h2>
                                     <p>
 
