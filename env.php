@@ -10,6 +10,6 @@ const APP_DIR = __DIR__;
 
 //-------- cấu hình email -------
 const MAIL_HOST = 'smtp.gmail.com';
-const MAIL_NAME = 'ninhhbinhh@gmail.com';
-const MAIL_PASSWORD = 'gnpxvsknicshxiis';
+const MAIL_NAME = 'you.email';
+const MAIL_PASSWORD = 'you.password';
 const MAIL_SECURE = 'ssl';
