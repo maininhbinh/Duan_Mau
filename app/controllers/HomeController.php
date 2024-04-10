@@ -31,26 +31,7 @@ class HomeController
 
         foreach ($comments as $key => $comment) {
             $commentTime = $comment['date'];
-            // $commentTimeReplyDate = $comment['replyDate'];
-
-            // $currentDateTimeReply = new DateTime();
-
-            // $commentDateTimeReply = new DateTime($commentTimeReplyDate);
-            // $intervalReply = $currentDateTimeReply->diff($commentDateTimeReply);
-            // $dateReply = [
-            //     'years' => $intervalReply->y,
-            //     'months' => $intervalReply->m,
-            //     'days' => $intervalReply->d,
-            //     'hours' => $intervalReply->h,
-            //     'minutes' => $intervalReply->i,
-            //     'seconds' => $intervalReply->s
-            // ];
-            // foreach ($dateReply as $i => $value) {
-            //     if ($value > 1) {
-            //         $comments[$key]['replyDate'] = $value . ' ' . $i;
-            //         break;
-            //     }
-            // }
+            
             $currentDateTime = new DateTime();
 
             $commentDateTime = new DateTime($commentTime);
@@ -68,7 +49,7 @@ class HomeController
             ];
 
             foreach ($date as $i => $value) {
-                if ($value > 1) {
+                if ($value > 0) {
                     $comments[$key]['date'] = $value . ' ' . $i;
                     break;
                 }

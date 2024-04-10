@@ -126,6 +126,7 @@ class RouteCollector
                     call_user_func_array($handler, $this->params);
                     return;
                 } else if (is_array($handler)) {
+                    
                     $this->compieRoute($handler);
                 }
             } else {
