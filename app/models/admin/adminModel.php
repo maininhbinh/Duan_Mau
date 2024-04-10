@@ -48,7 +48,7 @@ class AdminModel extends Model
 
     public function getPerPageCategory($start, $perPage)
     {
-        $sql = "SELECT children.*, parent.name as parent_name FROM $this->category as children LEFT JOIN $this->category as parent ON children.id_parent = parent.id where children.is_delete != 1 LIMIT $start, $perPage";
+        $sql = "SELECT children.*, parent.name as parent_name FROM $this->category as children LEFT JOIN $this->category as parent ON children.id_parent = parent.id LIMIT $start, $perPage";
 
         $this->setQuery($sql);
         return $this->loadAllRow();
